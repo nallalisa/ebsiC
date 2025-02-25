@@ -1,0 +1,32 @@
+﻿<Window x:Class="ebsiC.Assets.MVVM.View.Dashboard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ebsiC.Assets.MVVM.View"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Style="{StaticResource winForm}"
+        xmlns:uc="clr-namespace:ebsiC.Assets.MVVM.View.userControl"
+        Background="#c9c6c5"
+        Title="Dashboard" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Background="#4e6d84">
+            
+        </StackPanel>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Background="#9eb0b8">
+                <TextBlock Text="Dashboard" VerticalAlignment="Center" FontSize="26" FontWeight="Bold" Margin="20, 10"/>
+                <uc:windowControl HorizontalAlignment="Right"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

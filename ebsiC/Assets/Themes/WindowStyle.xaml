@@ -1,0 +1,30 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:ebsiC.Assets.Classes">
+    <WindowChrome x:Key="winChrome"
+                  GlassFrameThickness="0"
+                  CaptionHeight="0"
+                  CornerRadius="20"/>
+    <Style TargetType="{x:Type Window}" x:Key="winForm">
+        <Setter Property="WindowStyle" Value="None"/>
+        <Setter Property="AllowsTransparency" Value="True"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="AutomationProperties.Name" Value="{Binding Title, RelativeSource={RelativeSource Self}}"/>
+        <Setter Property="Width" Value="1100"/>
+        <Setter Property="Height" Value="800"/>
+        <Setter Property="local:WindowHelper.StartupLocation" Value="CenterScreen"/>
+        <Setter Property="local:WindowHelper.IsDraggable" Value="True"/>
+        <Setter Property="WindowChrome.WindowChrome" Value="{StaticResource winChrome}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Window}">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="10" BorderBrush="Black" BorderThickness="1">
+                        <AdornerDecorator>
+                            <ContentPresenter/>
+                        </AdornerDecorator>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

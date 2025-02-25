@@ -1,0 +1,50 @@
+﻿<Window x:Class="ebsiC.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:ebsiC" 
+        xmlns:uc="clr-namespace:ebsiC.Assets.MVVM.View.userControl"
+        xmlns:class="clr-namespace:ebsiC.Assets.Classes"
+        mc:Ignorable="d"
+        Style="{StaticResource winForm}"
+        Background="#94cdf7">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        
+        <uc:windowControl HorizontalAlignment="Right"/>
+        
+        <materialDesign:Card materialDesign:ElevationAssist.Elevation="Dp4"
+                                 Height="450"
+                                 Width="400"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Center"
+                                 Grid.Row="1">
+            <StackPanel Orientation="Vertical">
+                <Rectangle Height="75"
+                               Width="300"
+                               Margin="0, 20">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="Assets/Images/src/logo.png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <uc:textBox materialDesign:HintAssist.Hint="Username"
+                            Margin="40, 30, 40, 0"/>
+                <uc:passwordBox materialDesign:HintAssist.Hint="Password"
+                                Margin="40, 30, 40, 0"/>
+                <Button Content="LOGIN"
+                        Style="{StaticResource MaterialDesignRaisedButton}"
+                        Background="#136682"
+                        Foreground="white"
+                        Margin="40, 40, 40, 0"
+                        Height="50"
+                        Width="170"
+                        materialDesign:ButtonAssist.CornerRadius="25"/>
+            </StackPanel>
+        </materialDesign:Card>
+    </Grid>
+</Window>
