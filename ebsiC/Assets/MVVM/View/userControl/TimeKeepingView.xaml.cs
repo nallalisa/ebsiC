@@ -1,6 +1,4 @@
-﻿using ebsiC.Assets.MVVM.ViewModel;
-using MaterialDesignThemes.Wpf;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ebsiC.Assets.MVVM.View
+namespace ebsiC.Assets.MVVM.View.userControl
 {
     /// <summary>
-    /// Interaction logic for Dashboard.xaml
+    /// Interaction logic for TimeKeepingView.xaml
     /// </summary>
-    public partial class Dashboard : Window
+    public partial class TimeKeepingView : UserControl
     {
-        public Dashboard()
+        public TimeKeepingView()
         {
             InitializeComponent();
         }

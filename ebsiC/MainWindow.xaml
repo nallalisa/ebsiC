@@ -26,8 +26,8 @@
                                  Grid.Row="1">
             <StackPanel Orientation="Vertical">
                 <Rectangle Height="75"
-                               Width="300"
-                               Margin="0, 20">
+                           Width="300"
+                           Margin="0, 20">
                     <Rectangle.Fill>
                         <ImageBrush ImageSource="Assets/Images/src/logo.png"/>
                     </Rectangle.Fill>

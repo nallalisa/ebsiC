@@ -1,5 +1,4 @@
 ﻿using ebsiC.Assets.MVVM.ViewModel;
-using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,18 +11,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ebsiC.Assets.MVVM.View
+namespace ebsiC.Assets.MVVM.View.userControl
 {
     /// <summary>
-    /// Interaction logic for Dashboard.xaml
+    /// Interaction logic for NavigationBar.xaml
     /// </summary>
-    public partial class Dashboard : Window
+    public partial class NavigationBar : UserControl
     {
-        public Dashboard()
+        public NavigationBar()
         {
             InitializeComponent();
+            DataContext = new NavBarVM();
         }
     }
 }
