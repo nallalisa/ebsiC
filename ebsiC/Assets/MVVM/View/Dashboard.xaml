@@ -24,7 +24,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         
-        <!-- Side NavBar -->
+        <!-- Left Side NavBar -->
         <uc:NavigationBar/>
 
             <!--<Grid.RowDefinitions>
@@ -51,7 +51,7 @@
                         Style="{StaticResource MaterialDesignFlatButton}" Foreground="White"/>
             </StackPanel>-->
 
-        <!-- 📌 Main Content (Right Side) -->
+        <!-- Right Side -->
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/> 
