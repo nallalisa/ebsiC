@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="ebsiC.Assets.MVVM.View.userControl.NavigationBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ebsiC.Assets.MVVM.View.userControl"
+             mc:Ignorable="d" 
+             xmlns:model="clr-namespace:ebsiC.Assets.MVVM.Model"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="#4e6d84">
+        <Grid.Effect>
+            <DropShadowEffect Color="Black" BlurRadius="25" ShadowDepth="10" Opacity="0.5"/>
+        </Grid.Effect>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Viewbox Margin="10">
+            <Rectangle Width="180" Height="60">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Assets/Images/src/logo.png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Viewbox>
+        <ListBox Grid.Row="1"
+                 VerticalAlignment="Top"
+                 ItemsSource="{Binding SampleList}"
+                 SelectedIndex="0"
+                 Margin="10">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem"
+                       BasedOn="{StaticResource MaterialDesign3.NavigationDrawerListBoxItem}">
+                    <Setter Property="materialDesign:NavigationDrawerAssist.SelectedIcon" 
+                            Value="{Binding SelectedIcon}"/>
+                    <Setter Property="materialDesign:NavigationDrawerAssist.UnselectedIcon" 
+                            Value="{Binding UnselectedIcon}"/>
+                    <Setter Property="materialDesign:NavigationDrawerAssist.IconSize"
+                            Value="50"/>
+                    <Setter Property="materialDesign:NavigationDrawerAssist.CornerRadius"
+                            Value="10"/>
+                    <Setter Property="Width" 
+                            Value="Auto"/>
+                    <Setter Property="Height"
+                            Value="100"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.Resources>
+                <DataTemplate DataType="{x:Type model:Navigation}">
+                    <TextBlock Text="{Binding Title}" 
+                               FontSize="16"/>
+                </DataTemplate>
+            </ListBox.Resources>
+        </ListBox>
+    </Grid>
+</UserControl>

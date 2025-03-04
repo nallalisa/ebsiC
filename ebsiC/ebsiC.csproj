@@ -23,7 +23,6 @@
 
   <ItemGroup>
     <Folder Include="Assets\Images\uploads\" />
-    <Folder Include="Assets\MVVM\ViewModel\" />
   </ItemGroup>
 
   <ItemGroup>

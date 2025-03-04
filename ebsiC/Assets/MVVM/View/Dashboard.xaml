@@ -6,27 +6,107 @@
         xmlns:local="clr-namespace:ebsiC.Assets.MVVM.View"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Style="{StaticResource winForm}"
         xmlns:uc="clr-namespace:ebsiC.Assets.MVVM.View.userControl"
+        xmlns:vm="clr-namespace:ebsiC.Assets.MVVM.ViewModel" 
         Background="#c9c6c5"
-        Title="Dashboard" Height="450" Width="800">
+        Style="{StaticResource winForm}"
+        Title="Dashboard" Height="768" Width="1366">
+
+    <Window.DataContext>
+        <vm:DashboardVM/>
+    </Window.DataContext>
+
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition/>
+            <!--Side NavBar -->
+            <ColumnDefinition Width=".3*"/>
+            <!-- Main Content -->
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Background="#4e6d84">
+        
+        <!-- Side NavBar -->
+        <uc:NavigationBar/>
+
+            <!--<Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                --><!-- Logo --><!--
+                <RowDefinition Height="*"/>
+                --><!-- Navigation --><!--
+            </Grid.RowDefinitions>-->
             
-        </StackPanel>
+            <!-- Logo --><!--
+            <Viewbox Margin="10">
+                <Rectangle Width="180" Height="60">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Assets/Images/src/logo.png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Viewbox>
+
+            --><!-- Navigation Buttons --><!--
+            <StackPanel Margin="10" Grid.Row="1">
+                <Button Content="Dashboard" Command="{Binding NavigateCommand}" CommandParameter="Dashboard"
+                        Style="{StaticResource MaterialDesignFlatButton}" Foreground="White"/>
+                <Button Content="Time Keeping" Command="{Binding NavigateCommand}" CommandParameter="Time Keeping"
+                        Style="{StaticResource MaterialDesignFlatButton}" Foreground="White"/>
+            </StackPanel>-->
+
+        <!-- 📌 Main Content (Right Side) -->
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="75"/>
-                <RowDefinition/>
+                <RowDefinition Height="Auto"/> 
+                <!-- Header Bar -->
+                <RowDefinition Height="Auto"/>
+                <!-- Section Title -->
+                <RowDefinition Height="*"/>
+                <!-- Main Content -->
             </Grid.RowDefinitions>
-            <Grid Background="#9eb0b8">
-                <TextBlock Text="Dashboard" VerticalAlignment="Center" FontSize="26" FontWeight="Bold" Margin="20, 10"/>
-                <uc:windowControl HorizontalAlignment="Right"/>
-            </Grid>
+
+            <!-- Header Bar -->
+            <materialDesign:Card Background="#9eb0b8"
+                                 Grid.Row="0"
+                                 materialDesign:ElevationAssist.Elevation="Dp24"
+                                 materialDesign:ShadowAssist.Darken="True">
+                <DockPanel>
+                    <!-- Window Controls -->
+                    <DockPanel DockPanel.Dock="Right" HorizontalAlignment="Right">
+                        <uc:windowControl/>
+                    </DockPanel>
+                </DockPanel>
+            </materialDesign:Card>
+
+            <!-- Title -->
+            <materialDesign:Card Grid.Row="1"
+                                 Background="White"
+                                 Padding="15"
+                                 Margin="10"
+                                 materialDesign:ElevationAssist.Elevation="Dp8">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Page Title -->
+                    <TextBlock Text="{Binding PageTitle}"
+                               FontSize="26"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Foreground="Black"/>
+
+                    <!-- Welcome Text --> 
+                    <TextBlock Grid.Column="1"
+                               Text="Welcome, User"
+                               FontSize="18"
+                               VerticalAlignment="Center"
+                               Foreground="Black"
+                               HorizontalAlignment="Right"/>
+                </Grid>
+            </materialDesign:Card>
+
+            <!-- Contents -->
+            <ContentControl Grid.Row="2"
+                            Content="{Binding CurrentView}"/>
         </Grid>
     </Grid>
 </Window>
