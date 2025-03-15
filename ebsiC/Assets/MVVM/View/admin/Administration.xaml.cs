@@ -1,5 +1,4 @@
-﻿using ebsiC.Assets.MVVM.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,14 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ebsiC.Assets.MVVM.View.userControl
+namespace ebsiC.Assets.MVVM.View.admin
 {
-    public partial class NavigationBar : UserControl
+    /// <summary>
+    /// Interaction logic for Administration.xaml
+    /// </summary>
+    public partial class Administration : UserControl
     {
-        public NavigationBar()
+        public Administration()
         {
             InitializeComponent();
-            DataContext = new NavBarVM();
         }
     }
 }

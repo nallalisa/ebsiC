@@ -8,6 +8,7 @@
              xmlns:model="clr-namespace:ebsiC.Assets.MVVM.Model"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              d:DesignHeight="450" d:DesignWidth="800">
+
     <Grid Background="#4e6d84">
         <Grid.Effect>
             <DropShadowEffect Color="Black" BlurRadius="25" ShadowDepth="10" Opacity="0.5"/>
@@ -16,6 +17,7 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+
         <Viewbox Margin="10">
             <Rectangle Width="180" Height="60">
                 <Rectangle.Fill>
@@ -23,10 +25,11 @@
                 </Rectangle.Fill>
             </Rectangle>
         </Viewbox>
+
         <ListBox Grid.Row="1"
                  VerticalAlignment="Top"
                  ItemsSource="{Binding SampleList}"
-                 SelectedIndex="0"
+                 SelectedItem="{Binding SelectedNavigation, Mode=TwoWay}"
                  Margin="10">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem"
@@ -47,8 +50,7 @@
             </ListBox.ItemContainerStyle>
             <ListBox.Resources>
                 <DataTemplate DataType="{x:Type model:Navigation}">
-                    <TextBlock Text="{Binding Title}" 
-                               FontSize="16"/>
+                    <TextBlock Text="{Binding Title}" FontSize="16"/>
                 </DataTemplate>
             </ListBox.Resources>
         </ListBox>

@@ -1,8 +1,7 @@
 ﻿using ebsiC.Assets.Classes;
 using ebsiC.Assets.MVVM.Model;
-using System.Collections.ObjectModel;
 using ebsiC.Assets.MVVM.View.userControl;
-using System.Windows;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace ebsiC.Assets.MVVM.ViewModel
@@ -11,23 +10,12 @@ namespace ebsiC.Assets.MVVM.ViewModel
     {
         private string _pageTitle;
         private object _currentView;
+        private Navigation _selectedNavigation;
+
         public ICommand NavigateCommand { get; }
-
-        private int _columnCount;
-
         public ObservableCollection<DataGridItem> DataGridItems { get; set; }
-
-        public int ColumnCount
-        {
-            get => _columnCount;
-            set
-            {
-                _columnCount = value;
-                OnPropertyChanged(nameof(ColumnCount));
-            }
-        }
-
         public ObservableCollection<DashboardCardVM> Cards { get; set; }
+        public ObservableCollection<Navigation> SampleList { get; set; }
 
         public string PageTitle
         {
@@ -52,50 +40,66 @@ namespace ebsiC.Assets.MVVM.ViewModel
             }
         }
 
-
-        private void UpdateColumnCount()
+        public Navigation SelectedNavigation
         {
-            double screenWidth = SystemParameters.WorkArea.Width;
-            ColumnCount = (int)screenWidth / 300;
-            ColumnCount = ColumnCount < 1 ? 1 : ColumnCount;
+            get => _selectedNavigation;
+            set
+            {
+                if (_selectedNavigation != value)
+                {
+                    _selectedNavigation = value;
+                    OnPropertyChanged(nameof(SelectedNavigation));
+                    NavigateToSelectedView();
+                }
+            }
         }
-
-
         public DashboardVM()
         {
             PageTitle = "Dashboard";
-            Cards = new ObservableCollection<DashboardCardVM>();
 
-            Cards.Add(new DashboardCardVM(new DashboardCardModel("#94cdf7", "Employees", "1000", "Account")));
-            Cards.Add(new DashboardCardVM(new DashboardCardModel("#ffcc00", "Active", "2000", "CheckCircle")));
-            Cards.Add(new DashboardCardVM(new DashboardCardModel("#ff5733", "Leave", "3000", "ClockOutline")));
+            Cards = new ObservableCollection<DashboardCardVM>
+            {
+                new DashboardCardVM(new DashboardCardModel("#94cdf7", "Employees", "1000", "Account")),
+                new DashboardCardVM(new DashboardCardModel("#ffcc00", "Active", "2000", "CheckCircle")),
+                new DashboardCardVM(new DashboardCardModel("#ff5733", "Leave", "3000", "ClockOutline"))
+            };
 
-            UpdateColumnCount();
-            ColumnCount = 3;
+            SampleList = new ObservableCollection<Navigation>
+            {
+                new Navigation { Title = "Dashboard", SelectedIcon = "ViewDashboard", UnselectedIcon = "ViewDashboardOutline" },
+                new Navigation { Title = "Attendance", SelectedIcon = "ClockCheck", UnselectedIcon = "ClockOutline" }
+            };
 
-            
+            SelectedNavigation = SampleList[0];
 
-            CurrentView = new DashboardView();
+            InitializeDataGridItems();
+        }
 
-            NavigateCommand = new RelayCommand(Navigate);
+        private void NavigateToSelectedView()
+        {
+            switch (SelectedNavigation?.Title)
+            {
+                case "Dashboard":
+                    CurrentView = new DashboardView();
+                    PageTitle = "Dashboard";
+                    break;
+                case "Attendance":
+                    CurrentView = new TimeKeepingView();
+                    PageTitle = "Attendance";
+                    break;
+                default:
+                    CurrentView = new DashboardView();
+                    PageTitle = "Dashboard";
+                    break;
+            }
+        }
 
+        private void InitializeDataGridItems()
+        {
             DataGridItems = new ObservableCollection<DataGridItem>
             {
                 new DataGridItem { ID = 1, Name = "John Doe", Age = 25, Department = "HR" },
                 new DataGridItem { ID = 2, Name = "Jane Smith", Age = 30, Department = "Finance" },
-                new DataGridItem { ID = 3, Name = "Alice Johnson", Age = 28, Department = "IT" },
-                new DataGridItem { ID = 3, Name = "Alice Johnson", Age = 28, Department = "IT" },
-                new DataGridItem { ID = 3, Name = "Alice Johnson", Age = 28, Department = "IT" },
-                new DataGridItem { ID = 3, Name = "Alice Johnson", Age = 28, Department = "IT" },
-                new DataGridItem { ID = 3, Name = "Alice Johnson", Age = 28, Department = "IT" },
-                new DataGridItem { ID = 3, Name = "Alice Johnson", Age = 28, Department = "IT" },
-                new DataGridItem { ID = 3, Name = "Alice Johnson", Age = 28, Department = "IT" },
-                new DataGridItem { ID = 3, Name = "Alice Johnson", Age = 28, Department = "IT" },
-                new DataGridItem { ID = 3, Name = "Alice Johnson", Age = 28, Department = "IT" },
-                new DataGridItem { ID = 3, Name = "Alice Johnson", Age = 28, Department = "IT" },
-                new DataGridItem { ID = 3, Name = "Alice Johnson", Age = 28, Department = "IT" },
-                new DataGridItem { ID = 3, Name = "Alice Johnson", Age = 28, Department = "IT" },
-                new DataGridItem { ID = 3, Name = "Alice Johnson", Age = 28, Department = "IT" },
                 new DataGridItem { ID = 3, Name = "Alice Johnson", Age = 28, Department = "IT" },
                 new DataGridItem { ID = 4, Name = "Bob Brown", Age = 35, Department = "Sales" }
             };
@@ -107,33 +111,6 @@ namespace ebsiC.Assets.MVVM.ViewModel
             public string Name { get; set; }
             public int Age { get; set; }
             public string Department { get; set; }
-        }
-
-        private void Navigate(object obj)
-        {
-            if (obj is string viewName)
-            {
-                switch(viewName)
-                {
-                    case "Dashboard":
-                        PageTitle = "Dashboard";
-                        CurrentView = new DashboardView();
-                        break;
-                    case "Time Keeping":
-                        PageTitle = "Time Keeping";
-                        CurrentView = new TimeKeepingView();
-                        break;
-                    case "Active":
-                        //CurrentView = new ActiveView();
-                        break;
-                    case "Leave":
-                        //CurrentView = new LeaveView();
-                        break;
-                    default:
-                        CurrentView = new DashboardView();
-                        break;
-                }
-            }
         }
     }
 }
