@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace ebsiC.Assets.MVVM.View.userControl
 {
-    /// <summary>
-    /// Interaction logic for NavigationBar.xaml
-    /// </summary>
     public partial class NavigationBar : UserControl
     {
         public NavigationBar()

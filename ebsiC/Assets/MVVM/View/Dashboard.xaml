@@ -23,38 +23,14 @@
             <!-- Main Content -->
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        
+
         <!-- Left Side NavBar -->
-        <uc:NavigationBar/>
-
-            <!--<Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                --><!-- Logo --><!--
-                <RowDefinition Height="*"/>
-                --><!-- Navigation --><!--
-            </Grid.RowDefinitions>-->
-            
-            <!-- Logo --><!--
-            <Viewbox Margin="10">
-                <Rectangle Width="180" Height="60">
-                    <Rectangle.Fill>
-                        <ImageBrush ImageSource="/Assets/Images/src/logo.png"/>
-                    </Rectangle.Fill>
-                </Rectangle>
-            </Viewbox>
-
-            --><!-- Navigation Buttons --><!--
-            <StackPanel Margin="10" Grid.Row="1">
-                <Button Content="Dashboard" Command="{Binding NavigateCommand}" CommandParameter="Dashboard"
-                        Style="{StaticResource MaterialDesignFlatButton}" Foreground="White"/>
-                <Button Content="Time Keeping" Command="{Binding NavigateCommand}" CommandParameter="Time Keeping"
-                        Style="{StaticResource MaterialDesignFlatButton}" Foreground="White"/>
-            </StackPanel>-->
+        <uc:NavigationBar DataContext="{Binding}"/>
 
         <!-- Right Side -->
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/> 
+                <RowDefinition Height="Auto"/>
                 <!-- Header Bar -->
                 <RowDefinition Height="Auto"/>
                 <!-- Section Title -->
@@ -94,7 +70,7 @@
                                VerticalAlignment="Center"
                                Foreground="Black"/>
 
-                    <!-- Welcome Text --> 
+                    <!-- Welcome Text -->
                     <TextBlock Grid.Column="1"
                                Text="Welcome, User"
                                FontSize="18"
