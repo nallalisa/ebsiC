@@ -24,6 +24,8 @@
                 <DataGridTextColumn Header="IN" Binding="{Binding IN}" Width="*" />
                 <DataGridTextColumn Header="OUT" Binding="{Binding OUT}" Width="*" />
                 <DataGridTextColumn Header="Hours Rendered" Binding="{Binding HoursRendered}" Width="*" />
+                <DataGridTextColumn Header="Overtime Rendered" Binding="{Binding OTRendered}" Width="*" />
+                <DataGridTextColumn Header="Total Hours Rendered" Binding="{Binding TotalHoursRendered}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
 
