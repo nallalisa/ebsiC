@@ -25,13 +25,12 @@
                 <DataGridTextColumn Header="OUT" Binding="{Binding OUT}" Width="*" />
                 <DataGridTextColumn Header="Hours Rendered" Binding="{Binding HoursRendered}" Width="*" />
                 <DataGridTextColumn Header="Overtime Rendered" Binding="{Binding OTRendered}" Width="*" />
-                <DataGridTextColumn Header="Total Hours Rendered" Binding="{Binding TotalHoursRendered}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="Browse Excel" Width="120" Margin="5" Click="browseExcel_Click"/>
-            <Button Content="Export to Excel" Width="120" Margin="5" Click="exportExcel_Click"/>
+            <Button Content="Export to Excel" Width="128" Margin="5" Click="exportExcel_Click"/>
         </StackPanel>
     </Grid>
 </UserControl>
