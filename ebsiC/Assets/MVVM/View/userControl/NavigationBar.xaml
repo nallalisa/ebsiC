@@ -18,8 +18,8 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Viewbox Margin="10 15 10 15">
-            <Rectangle Width="180" Height="50" Margin="15">
+        <Viewbox Margin="10">
+            <Rectangle Width="180" Height="60">
                 <Rectangle.Fill>
                     <ImageBrush ImageSource="/Assets/Images/src/logo.png"/>
                 </Rectangle.Fill>
@@ -46,14 +46,11 @@
                             Value="Auto"/>
                     <Setter Property="Height"
                             Value="100"/>
-                    <Setter Property="Margin"
-                            Value="2"/>
                 </Style>
             </ListBox.ItemContainerStyle>
             <ListBox.Resources>
                 <DataTemplate DataType="{x:Type model:Navigation}">
-                    <TextBlock Text="{Binding Title}" 
-                               FontSize="16"/>
+                    <TextBlock Text="{Binding Title}" FontSize="16"/>
                 </DataTemplate>
             </ListBox.Resources>
         </ListBox>

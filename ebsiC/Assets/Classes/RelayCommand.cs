@@ -1,34 +1,31 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
-public class RelayCommand : ICommand
+namespace ebsiC.Assets.Classes
 {
-    private readonly Action<object?> _execute;
-    private readonly Predicate<object?>? _canExecute;
-
-    public RelayCommand(Action<object?> execute, Predicate<object?>? canExecute = null)
+    internal class RelayCommand : ICommand
     {
-        _execute = execute ?? throw new ArgumentNullException(nameof(execute));
-        _canExecute = canExecute;
-    }
+        private Action<Object> _execute;
+        private Func<Object, bool> _canExecute;
 
-    // Fix for 1st warning (nullability on event)
-    public event EventHandler? CanExecuteChanged;
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
 
-    // Fix for 3rd warning (nullable parameter)
-    public bool CanExecute(object? parameter)
-    {
-        return _canExecute?.Invoke(parameter) ?? true;
-    }
+        public RelayCommand(Action<object> execute, Func<Object, bool> canExecute = null)
+        {
+            _execute = execute;
+            _canExecute = canExecute;
+        }
 
-    // Fix for 4th warning (nullable parameter)
-    public void Execute(object? parameter)
-    {
-        _execute(parameter);
-    }
-
-    public void RaiseCanExecuteChanged()
-    {
-        CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+        public bool CanExecute(object parameter)
+        {
+            return _canExecute == null || _canExecute(parameter);
+        }
+        public void Execute(object parameter)
+        {
+            _execute(parameter);
+        }
     }
 }
