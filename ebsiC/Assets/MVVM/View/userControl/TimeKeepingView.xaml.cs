@@ -45,6 +45,41 @@ namespace ebsiC.Assets.MVVM.View.userControl
                 MessageBox.Show("No data to export!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+
+        // ✅ Helper to calculate duration properly
+        private TimeSpan? GetRenderedDuration(DateTime? firstIn, DateTime? lastOut)
+        {
+            if (firstIn.HasValue && lastOut.HasValue)
+            {
+                if (lastOut.Value < firstIn.Value) lastOut = lastOut.Value.AddDays(1);
+                TimeSpan duration = lastOut.Value - firstIn.Value;
+                if (duration.TotalHours > 24) return null;
+                return duration;
+            }
+            return null;
+        }
+
+        private string CalculateHoursRendered(DateTime? firstIn, DateTime? lastOut)
+        {
+            var duration = GetRenderedDuration(firstIn, lastOut);
+            if (duration.HasValue)
+                return $"{(int)duration.Value.TotalHours} hrs {duration.Value.Minutes} mins";
+            else if (firstIn.HasValue) return "No Time OUT";
+            else if (lastOut.HasValue) return "No Time IN";
+            return "No Time IN and OUT";
+        }
+
+        private string Overtime(DateTime? firstIn, DateTime? lastOut)
+        {
+            var duration = GetRenderedDuration(firstIn, lastOut);
+            if (duration.HasValue && duration.Value.TotalHours > 8)
+            {
+                TimeSpan overtime = duration.Value - TimeSpan.FromHours(8);
+                return $"{overtime.Hours} hrs {overtime.Minutes} mins";
+            }
+            return "No Overtime";
+        }
+
         private DataTable ReadExcel(string filePath)
         {
             DataTable dt = new DataTable();
@@ -54,12 +89,12 @@ namespace ebsiC.Assets.MVVM.View.userControl
             dt.Columns.Add("IN");
             dt.Columns.Add("OUT");
             dt.Columns.Add("HoursRendered");
+            dt.Columns.Add("OTRendered");
 
             using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
             {
                 IWorkbook workbook = new XSSFWorkbook(fs);
                 ISheet sheet = workbook.GetSheetAt(0);
-
                 int rowStart = 6;
 
                 DateTime? lastValidDate = null;
@@ -78,15 +113,19 @@ namespace ebsiC.Assets.MVVM.View.userControl
                     string? name = row.GetCell(1)?.ToString();
                     DateTime? date = ParseDate(row.GetCell(2));
 
-                    DateTime? in1 = ParseTime(row.GetCell(3));
-                    DateTime? out1 = ParseTime(row.GetCell(4));
-                    DateTime? in2 = ParseTime(row.GetCell(5));
-                    DateTime? out2 = ParseTime(row.GetCell(6));
-                    DateTime? in3 = ParseTime(row.GetCell(7));
-                    DateTime? out3 = ParseTime(row.GetCell(8));
+                    List<DateTime?> inTimes = new List<DateTime?>
+                    {
+                        ParseTime(row.GetCell(3)),
+                        ParseTime(row.GetCell(5)),
+                        ParseTime(row.GetCell(7))
+                    };
 
-                    List<DateTime?> inTimes = new List<DateTime?> { in1, in2, in3 };
-                    List<DateTime?> outTimes = new List<DateTime?> { out1, out2, out3 };
+                    List<DateTime?> outTimes = new List<DateTime?>
+                    {
+                        ParseTime(row.GetCell(4)),
+                        ParseTime(row.GetCell(6)),
+                        ParseTime(row.GetCell(8))
+                    };
 
                     DateTime? firstIn = inTimes.Where(t => t.HasValue).Min();
                     DateTime? lastRowOut = outTimes.Where(t => t.HasValue).Max();
@@ -124,6 +163,7 @@ namespace ebsiC.Assets.MVVM.View.userControl
                     newRow["IN"] = firstIn?.ToString("hh:mm tt");
                     newRow["OUT"] = lastRowOut?.ToString("hh:mm tt");
                     newRow["HoursRendered"] = hoursRendered;
+                    newRow["OTRendered"] = Overtime(firstIn, lastRowOut);
                     dt.Rows.Add(newRow);
 
                     lastRow = newRow;
@@ -159,19 +199,6 @@ namespace ebsiC.Assets.MVVM.View.userControl
             if (string.IsNullOrEmpty(timeString)) return null;
             if (DateTime.TryParse(timeString, out DateTime result)) return result;
             return null;
-        }
-
-        private string CalculateHoursRendered(DateTime? firstIn, DateTime? lastOut)
-        {
-            if (firstIn.HasValue && lastOut.HasValue)
-            {
-                if (lastOut.Value < firstIn.Value) lastOut = lastOut.Value.AddDays(1);
-                TimeSpan duration = lastOut.Value - firstIn.Value;
-                return $"{(int)duration.TotalHours} hrs {duration.Minutes} mins";
-            }
-            else if (firstIn.HasValue) return "No Time OUT";
-            else if (lastOut.HasValue) return "No Time IN";
-            return "No Time IN and OUT";
         }
         private void ExportToExcel(DataTable dt)
         {
@@ -282,6 +309,7 @@ namespace ebsiC.Assets.MVVM.View.userControl
                         }
                     }
                 }
+
                 for (int i = 0; i < dt.Columns.Count; i++)
                 {
                     sheet.AutoSizeColumn(i);
