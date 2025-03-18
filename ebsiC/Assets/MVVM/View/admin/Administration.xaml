@@ -7,19 +7,22 @@
              xmlns:userControl="clr-namespace:ebsiC.Assets.MVVM.View.userControl" x:Class="ebsiC.Assets.MVVM.View.admin.Administration"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Grid 
-            HorizontalAlignment="Left" 
-            Height="450" 
-            VerticalAlignment="Center" 
-            Width="635"
-            Background="LightGray" Margin="165,0,0,0"/>
-        <DockPanel 
-            HorizontalAlignment="Left" 
-            Height="450" 
-            LastChildFill="False"
-            VerticalAlignment="Center" 
-            Width="165"
-            Background="LightBlue"/>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition MaxHeight="525"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel>
+            <TabControl TabStripPlacement="Top"
+                        Foreground="#FFFFFF"
+                        Background="#FFFFFF">
+                <TabItem Header="Manage Admin"></TabItem>
+                <TabItem Header="Manage Employee"></TabItem>
+            </TabControl>
+            <DataGrid>
+                
+            </DataGrid>
+        </StackPanel>
     </Grid>
 </UserControl>
