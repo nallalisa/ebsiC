@@ -50,6 +50,7 @@
                 <TextBlock FontSize="16"
                            Foreground="#FFFFFF"
                            Text="entries"></TextBlock>
+                <!-- <userControl:textBox Content="WOW" Foreground="white"/> --> <!-- Template -->
             </StackPanel>
             
             <!-- This section is for the Admin Tab -->

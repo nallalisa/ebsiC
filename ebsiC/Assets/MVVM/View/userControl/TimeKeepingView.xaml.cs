@@ -51,7 +51,14 @@ namespace ebsiC.Assets.MVVM.View.userControl
             {
                 if (lastOut.Value < firstIn.Value) lastOut = lastOut.Value.AddDays(1);
                 TimeSpan duration = lastOut.Value - firstIn.Value;
+
                 if (duration.TotalHours > 24) return null;
+
+                if (duration.TotalHours >= 9)
+                {
+                    duration = duration.Subtract(TimeSpan.FromHours(1));
+                }
+
                 return duration;
             }
             return null;
@@ -61,7 +68,7 @@ namespace ebsiC.Assets.MVVM.View.userControl
         {
             var duration = GetRenderedDuration(firstIn, lastOut);
             if (duration.HasValue)
-                return $"{(int)duration.Value.TotalHours} hrs {duration.Value.Minutes} mins";
+                return $"{(int)duration.Value.TotalHours} hr(s) {duration.Value.Minutes} mins";
             else if (firstIn.HasValue) return "No Time OUT";
             else if (lastOut.HasValue) return "No Time IN";
             return "No Time IN and OUT";
@@ -73,7 +80,7 @@ namespace ebsiC.Assets.MVVM.View.userControl
             if (duration.HasValue && duration.Value.TotalHours > 8)
             {
                 TimeSpan overtime = duration.Value - TimeSpan.FromHours(8);
-                return $"{overtime.Hours} hrs {overtime.Minutes} mins";
+                return $"{overtime.Hours} hr(s) {overtime.Minutes} mins";
             }
             return "No Overtime";
         }
@@ -89,7 +96,7 @@ namespace ebsiC.Assets.MVVM.View.userControl
             dt.Columns.Add("HoursRendered");
             dt.Columns.Add("OTRendered");
 
-            using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+            using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
                 IWorkbook workbook = new XSSFWorkbook(fs);
                 ISheet sheet = workbook.GetSheetAt(0);
@@ -212,7 +219,7 @@ namespace ebsiC.Assets.MVVM.View.userControl
                 IWorkbook workbook = new XSSFWorkbook();
                 ISheet sheet = workbook.CreateSheet("Attendance Report");
 
-                //Header Style
+                // Header Style
                 ICellStyle headerStyle = workbook.CreateCellStyle();
                 IFont headerFont = workbook.CreateFont();
                 headerFont.IsBold = true;
@@ -246,20 +253,25 @@ namespace ebsiC.Assets.MVVM.View.userControl
                 timeStyle.CloneStyleFrom(cellStyle);
                 timeStyle.DataFormat = workbook.CreateDataFormat().GetFormat("hh:mm AM/PM");
 
-                // Highlighted Data Styles
-                ICellStyle lateCellStyle = workbook.CreateCellStyle();
+                //Light Red RGB Color
+                XSSFColor lightRed = new XSSFColor(new byte[] { 255, 204, 203 });
+
+                // Late Cell Style (General)
+                XSSFCellStyle lateCellStyle = (XSSFCellStyle)workbook.CreateCellStyle();
                 lateCellStyle.CloneStyleFrom(cellStyle);
-                lateCellStyle.FillForegroundColor = IndexedColors.Red.Index;
+                lateCellStyle.SetFillForegroundColor(lightRed);
                 lateCellStyle.FillPattern = FillPattern.SolidForeground;
 
-                ICellStyle lateDateStyle = workbook.CreateCellStyle();
+                // Late Date Style
+                XSSFCellStyle lateDateStyle = (XSSFCellStyle)workbook.CreateCellStyle();
                 lateDateStyle.CloneStyleFrom(dateStyle);
-                lateDateStyle.FillForegroundColor = IndexedColors.Red.Index;
+                lateDateStyle.SetFillForegroundColor(lightRed);
                 lateDateStyle.FillPattern = FillPattern.SolidForeground;
 
-                ICellStyle lateTimeStyle = workbook.CreateCellStyle();
+                // Late Time Style
+                XSSFCellStyle lateTimeStyle = (XSSFCellStyle)workbook.CreateCellStyle();
                 lateTimeStyle.CloneStyleFrom(timeStyle);
-                lateTimeStyle.FillForegroundColor = IndexedColors.Red.Index;
+                lateTimeStyle.SetFillForegroundColor(lightRed);
                 lateTimeStyle.FillPattern = FillPattern.SolidForeground;
 
                 IRow headerRow = sheet.CreateRow(0);
@@ -278,7 +290,7 @@ namespace ebsiC.Assets.MVVM.View.userControl
                     string? inTimeStr = dt.Rows[i]["IN"]?.ToString();
                     if (DateTime.TryParse(inTimeStr, out DateTime inTime))
                     {
-                        if (inTime.TimeOfDay > new TimeSpan(8, 0, 0))
+                        if (inTime.TimeOfDay > new TimeSpan(8, 0, 0)) // Late if after 8:00 AM
                         {
                             isLate = true;
                         }

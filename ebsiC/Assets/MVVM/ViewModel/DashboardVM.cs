@@ -64,6 +64,7 @@ namespace ebsiC.Assets.MVVM.ViewModel
                 new DashboardCardVM(new DashboardCardModel("#ff5733", "Leave", "3000", "ClockOutline"))
             };
 
+            //ADDING NAVIGATION
             SampleList = new ObservableCollection<Navigation>
             {
                 new Navigation { Title = "Dashboard", SelectedIcon = "ViewDashboard", UnselectedIcon = "ViewDashboardOutline" },
