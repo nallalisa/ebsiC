@@ -22,18 +22,21 @@
                 <TabItem Header="Manage Admin"></TabItem>
                 <TabItem Header="Manage Employee"></TabItem>
             </TabControl>
-
+            
             <Button Content="Add New Administrator"
                     Width="185"
                     Margin="0 5 20 5"
                     HorizontalAlignment="Right"/>
+            <!-- 
+            <userControl:SingleButton Content="Add New Administrator" Foreground="#FFFFFF"/> -->
 
             <StackPanel Grid.Row="1"
                         Orientation="Horizontal"
                         Margin="5">
                 <TextBlock FontSize="16"
-                           Foreground="#FFFFFF"
-                           Text="Show">Show</TextBlock>
+                           Foreground="#FFFFFF">
+                    Show
+                </TextBlock>
                 <ComboBox Margin="10 0 10 0"
                           Width="50"
                           Height="Auto"
@@ -47,10 +50,10 @@
                     <ComboBoxItem Content="25"></ComboBoxItem>
                     <ComboBoxItem Content="50"></ComboBoxItem>
                 </ComboBox>
+                <!-- <userControl:comboBox/> -->
                 <TextBlock FontSize="16"
                            Foreground="#FFFFFF"
                            Text="entries"></TextBlock>
-                <!-- <userControl:textBox Content="WOW" Foreground="white"/> --> <!-- Template -->
             </StackPanel>
             
             <!-- This section is for the Admin Tab -->
