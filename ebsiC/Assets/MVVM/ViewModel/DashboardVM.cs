@@ -68,7 +68,9 @@ namespace ebsiC.Assets.MVVM.ViewModel
             SampleList = new ObservableCollection<Navigation>
             {
                 new Navigation { Title = "Dashboard", SelectedIcon = "ViewDashboard", UnselectedIcon = "ViewDashboardOutline" },
-                new Navigation { Title = "Attendance", SelectedIcon = "ClockCheck", UnselectedIcon = "ClockOutline" }
+                new Navigation { Title = "Attendance", SelectedIcon = "ClockCheck", UnselectedIcon = "ClockOutline" },
+                new Navigation { Title = "Payroll" },
+                new Navigation { Title = "Administration" }
             };
 
             SelectedNavigation = SampleList[0];
