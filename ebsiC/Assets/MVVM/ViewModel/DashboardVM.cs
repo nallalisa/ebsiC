@@ -1,5 +1,6 @@
 ﻿using ebsiC.Assets.Classes;
 using ebsiC.Assets.MVVM.Model;
+using ebsiC.Assets.MVVM.View.admin;
 using ebsiC.Assets.MVVM.View.userControl;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -89,6 +90,10 @@ namespace ebsiC.Assets.MVVM.ViewModel
                 case "Attendance":
                     CurrentView = new TimeKeepingView();
                     PageTitle = "Attendance";
+                    break;
+                case "Administration":
+                    CurrentView = new Administration();
+                    PageTitle = "Administration";
                     break;
                 default:
                     CurrentView = new DashboardView();
