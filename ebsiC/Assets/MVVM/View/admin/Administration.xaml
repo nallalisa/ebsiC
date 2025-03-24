@@ -8,7 +8,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     
-    <Grid Margin="10">
+    <Grid Margin="10"
+          Background="#FFFFFF">
         <Grid.RowDefinitions>
             <RowDefinition MaxHeight="525"/>
             <RowDefinition Height="Auto"/>
@@ -16,25 +17,29 @@
 
         <StackPanel >
             <TabControl TabStripPlacement="Top"
-                        Foreground="#FFFFFF"
+                        Foreground="#000000"
                         Background="#FFFFFF"
                         Margin="5">
                 <TabItem Header="Manage Admin"></TabItem>
                 <TabItem Header="Manage Employee"></TabItem>
             </TabControl>
-            
+
+            <userControls:TabControls />
+
+            <!--
             <Button Content="Add New Administrator"
                     Width="185"
                     Margin="0 5 20 5"
                     HorizontalAlignment="Right"/>
-            <!-- 
-            <userControl:SingleButton Content="Add New Administrator" Foreground="#FFFFFF"/> -->
+            -->
+
+            <userControl:SingleButton HorizontalAlignment="Right" />
 
             <StackPanel Grid.Row="1"
                         Orientation="Horizontal"
                         Margin="5">
                 <TextBlock FontSize="16"
-                           Foreground="#FFFFFF">
+                           Foreground="#000000">
                     Show
                 </TextBlock>
                 <ComboBox Margin="10 0 10 0"
@@ -52,7 +57,7 @@
                 </ComboBox>
                 <!-- <userControl:comboBox/> -->
                 <TextBlock FontSize="16"
-                           Foreground="#FFFFFF"
+                           Foreground="#000000"
                            Text="entries"></TextBlock>
             </StackPanel>
             
@@ -90,7 +95,7 @@
                         Orientation="Horizontal"
                         Margin="5">
                 <TextBlock FontSize="16"
-                           Foreground="#FFFFFF"
+                           Foreground="#000000"
                            HorizontalAlignment="Left"
                            Text="Showing nth of nth entries "></TextBlock>
             </StackPanel>
