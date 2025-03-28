@@ -20,85 +20,71 @@
                         Foreground="#000000"
                         Background="#FFFFFF"
                         Margin="5">
-                <TabItem Header="Manage Admin"></TabItem>
+                <TabItem Header="Manage Admin">
+                    <StackPanel Grid.Row="1"
+                                Orientation="Horizontal"
+                                Margin="5">
+                        <TextBlock FontSize="16"
+                                   Foreground="#000000"> Show
+                        </TextBlock>
+                        <ComboBox Margin="10 0 10 0"
+                                  Width="50"
+                                  Height="Auto"
+                                  VerticalAlignment="Top"
+                                  HorizontalAlignment="Center"
+                                  BorderThickness="1">
+                            <ComboBoxItem Content="5"></ComboBoxItem>
+                            <ComboBoxItem Content="10"></ComboBoxItem>
+                            <ComboBoxItem Content="15"></ComboBoxItem>
+                            <ComboBoxItem Content="20"></ComboBoxItem>
+                            <ComboBoxItem Content="25"></ComboBoxItem>
+                            <ComboBoxItem Content="50"></ComboBoxItem>
+                        </ComboBox>
+                        <!-- <userControl:comboBox/> -->
+                        <TextBlock FontSize="16"
+                                   Foreground="#000000"
+                                   Text="entries"></TextBlock>
+                    </StackPanel>
+
+                    <!-- This section is for the Admin Tab -->
+                        <DataGrid x:Name="DataGridExcel"
+                                  AutoGenerateColumns="False"
+                                  IsReadOnly="True"
+                                  CanUserAddRows="False"
+                                  Margin="5">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Employee No."
+                                Binding="{Binding EmployeeNo}"
+                                Width="*" />
+                                <DataGridTextColumn Header="Name"
+                                Binding="{Binding Name}"
+                                Width="*" />
+                                <DataGridTextColumn Header="Department"
+                                Binding="{Binding Department}"
+                                Width="*" />
+                                <DataGridTextColumn Header="E-mail Address"
+                                Binding="{Binding Email}"
+                                Width="*" />
+                                <DataGridTextColumn Header="Username"
+                                Binding="{Binding Username}"
+                                Width="*" />
+                                <DataGridTextColumn Header="Actions"
+                                Binding="{Binding Actions}"
+                                Width="*" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    
+                    <!-- Still not sure how to work on the page button, see figma for ref -->
+                    
+                        <TextBlock FontSize="16"
+                                   Foreground="#000000"
+                                   HorizontalAlignment="Left"
+                                   Text="Showing nth of nth entries "></TextBlock>
+                    </StackPanel>
+                </TabItem>
                 <TabItem Header="Manage Employee"></TabItem>
             </TabControl>
 
-            <userControls:TabControls />
-
-            <!--
-            <Button Content="Add New Administrator"
-                    Width="185"
-                    Margin="0 5 20 5"
-                    HorizontalAlignment="Right"/>
-            -->
-
-            <userControl:SingleButton HorizontalAlignment="Right" />
-
-            <StackPanel Grid.Row="1"
-                        Orientation="Horizontal"
-                        Margin="5">
-                <TextBlock FontSize="16"
-                           Foreground="#000000">
-                    Show
-                </TextBlock>
-                <ComboBox Margin="10 0 10 0"
-                          Width="50"
-                          Height="Auto"
-                          VerticalAlignment="Top"
-                          HorizontalAlignment="Center"
-                          BorderThickness="1">
-                    <ComboBoxItem Content="5"></ComboBoxItem>
-                    <ComboBoxItem Content="10"></ComboBoxItem>
-                    <ComboBoxItem Content="15"></ComboBoxItem>
-                    <ComboBoxItem Content="20"></ComboBoxItem>
-                    <ComboBoxItem Content="25"></ComboBoxItem>
-                    <ComboBoxItem Content="50"></ComboBoxItem>
-                </ComboBox>
-                <!-- <userControl:comboBox/> -->
-                <TextBlock FontSize="16"
-                           Foreground="#000000"
-                           Text="entries"></TextBlock>
-            </StackPanel>
-            
-            <!-- This section is for the Admin Tab -->
-            <!-- Just replace the x:name to distinguish it from TimeKeeping -->
-            <DataGrid x:Name="DataGridExcel"
-                      AutoGenerateColumns="False"
-                      IsReadOnly="True"
-                      CanUserAddRows="False"
-                      Margin="5">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Employee No."
-                                        Binding="{Binding EmployeeNo}"
-                                        Width="*" />
-                    <DataGridTextColumn Header="Name"
-                                        Binding="{Binding Name}"
-                                        Width="*" />
-                    <DataGridTextColumn Header="Department"
-                                        Binding="{Binding Department}"
-                                        Width="*" />
-                    <DataGridTextColumn Header="E-mail Address"
-                                        Binding="{Binding Email}"
-                                        Width="*" />
-                    <DataGridTextColumn Header="Username"
-                                        Binding="{Binding Username}"
-                                        Width="*" />
-                    <DataGridTextColumn Header="Actions"
-                                        Binding="{Binding Actions}"
-                                        Width="*" />
-                </DataGrid.Columns>
-            </DataGrid>
-
-            <!-- Still not sure how to work on the page button, see figma for ref -->
-            <StackPanel Grid.Row="1"
-                        Orientation="Horizontal"
-                        Margin="5">
-                <TextBlock FontSize="16"
-                           Foreground="#000000"
-                           HorizontalAlignment="Left"
-                           Text="Showing nth of nth entries "></TextBlock>
-            </StackPanel>
         </StackPanel>
     </Grid>
 </UserControl>
