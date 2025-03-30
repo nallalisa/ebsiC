@@ -20,39 +20,21 @@
                         Foreground="#000000"
                         Background="#FFFFFF"
                         Margin="5">
-                <TabItem Header="Manage Admin">
-                    <Grid Margin="10">
-                        <StackPanel Grid.Row="1"
-                                Orientation="Horizontal"
-                                Margin="10">
-                            <TextBlock FontSize="16"
-                                       Foreground="#000000"> Show
-                            </TextBlock>
-                            <ComboBox Margin="10 0 10 0"
-                                      Width="50"
-                                      Height="Auto"
-                                      VerticalAlignment="Top"
-                                      HorizontalAlignment="Center"
-                                      BorderThickness="1">
-                                <ComboBoxItem Content="5"></ComboBoxItem>
-                                <ComboBoxItem Content="10"></ComboBoxItem>
-                                <ComboBoxItem Content="15"></ComboBoxItem>
-                                <ComboBoxItem Content="20"></ComboBoxItem>
-                                <ComboBoxItem Content="25"></ComboBoxItem>
-                                <ComboBoxItem Content="50"></ComboBoxItem>
-                            </ComboBox>
-                            <!-- <userControl:comboBox/> -->
-                            <TextBlock FontSize="16"
-                                       Foreground="#000000"
-                                       Text="entries"></TextBlock>
-
-                        </StackPanel>
-                    <!-- This section is for the Admin Tab -->
+                <TabItem Header="Manage Admin" 
+                         Foreground="#000000">
+                    <Grid Margin="5">
+                        <Button Margin="3 0 3 50"
+                                Width="185"
+                                Foreground="#000000"
+                                HorizontalAlignment="Right"
+                                Content="Add New Administrator">
+                        </Button>
+                        <!-- This section is for the Admin Tab -->
                         <DataGrid x:Name="DataGridAdmin"
                                   AutoGenerateColumns="False"
                                   IsReadOnly="True"
                                   CanUserAddRows="False"
-                                  Margin="20">
+                                  Margin="3 50 3 0">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Employee No."
                                 Binding="{Binding EmployeeNo}"
@@ -74,48 +56,22 @@
                                 Width="*" />
                             </DataGrid.Columns>
                         </DataGrid>
-                    
-                    <!-- Still not sure how to work on the page button, see figma for ref -->
-
-                        <TextBlock FontSize="16"
-                                   Foreground="#000000"
-                                   HorizontalAlignment="Left"
-                                   Text="Showing nth of nth entries "></TextBlock>
-                   </Grid>
+                    </Grid>
                 </TabItem>
-                <TabItem Header="Manage Employee">
-                    <Grid Margin="10">
-                        <StackPanel Grid.Row="1"
-                                    Orientation="Horizontal"
-                                    Margin="5">
-                            <TextBlock FontSize="16"
-                                       Foreground="#000000"> Show
-                            </TextBlock>
-                            <ComboBox Margin="10 0 10 0"
-                                      Width="50"
-                                      Height="Auto"
-                                      VerticalAlignment="Top"
-                                      HorizontalAlignment="Center"
-                                      BorderThickness="1">
-                                <ComboBoxItem Content="5"></ComboBoxItem>
-                                <ComboBoxItem Content="10"></ComboBoxItem>
-                                <ComboBoxItem Content="15"></ComboBoxItem>
-                                <ComboBoxItem Content="20"></ComboBoxItem>
-                                <ComboBoxItem Content="25"></ComboBoxItem>
-                                <ComboBoxItem Content="50"></ComboBoxItem>
-                            </ComboBox>
-                            <!-- <userControl:comboBox/> -->
-                            <TextBlock FontSize="16"
-                                       Foreground="#000000"
-                                       Text="entries"></TextBlock>
-
-                        </StackPanel>
+                <TabItem Header="Manage Employee" Foreground="#000000" Background="#000000">
+                    <Grid Margin="5">
+                        <Button Margin="3 0 3 50"
+                                Width="185"
+                                Foreground="#000000"
+                                HorizontalAlignment="Right"
+                                Content="Add New Employee">
+                        </Button>
                         <!-- This section is for the Admin Tab -->
                         <DataGrid x:Name="DataGridEmployee"
                                   AutoGenerateColumns="False"
                                   IsReadOnly="True"
                                   CanUserAddRows="False"
-                                  Margin="5">
+                                  Margin="3 50 3 0">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Employee No."
                                                     Binding="{Binding EmployeeNo}"
@@ -143,17 +99,9 @@
                                                     Width="*" />
                             </DataGrid.Columns>
                         </DataGrid>
-
-                        <!-- Still not sure how to work on the page button, see figma for ref -->
-
-                        <TextBlock FontSize="16"
-                Foreground="#000000"
-                HorizontalAlignment="Left"
-                Text="Showing nth of nth entries "></TextBlock>
                     </Grid>
                 </TabItem>
             </TabControl>
-
         </StackPanel>
     </Grid>
 </UserControl>
