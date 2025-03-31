@@ -18,7 +18,7 @@
         <StackPanel >
             <TabControl TabStripPlacement="Top"
                         Foreground="#000000"
-                        Background="#FFFFFF"
+                        
                         Margin="5">
                 <TabItem Header="Manage Admin" 
                          Foreground="#000000">

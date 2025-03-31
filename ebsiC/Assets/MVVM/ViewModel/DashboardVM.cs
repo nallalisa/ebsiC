@@ -91,6 +91,10 @@ namespace ebsiC.Assets.MVVM.ViewModel
                     CurrentView = new TimeKeepingView();
                     PageTitle = "Attendance";
                     break;
+                case "Payroll":
+                    CurrentView = new Administration();
+                    PageTitle = "Administration";
+                    break;
                 case "Administration":
                     CurrentView = new Administration();
                     PageTitle = "Administration";
