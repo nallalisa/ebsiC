@@ -57,21 +57,18 @@
         
         <StackPanel Orientation="Horizontal"
                     Height="125">
-            <Label Grid.Row="0"
-                   Margin="30 0 30 0"
+            <Label Margin="30 0 30 0"
                    Padding="15"
                    Height="50"
                    Foreground="#000000"
                    Content="Employee ID"></Label>
-            <Label Grid.Row="1"
-                   Margin="30 0 30 0"
+            <Label Margin="30 0 30 0"
                    Padding="15"
                    Height="50"
                    Foreground="#000000"
                    Content="Employee ID"
                    HorizontalAlignment="Center"></Label>
-            <Label Grid.Row="2"
-                   Margin="30 0 30 0"
+            <Label Margin="30 0 30 0"
                    Padding="15"
                    Height="50"
                    Foreground="#000000"

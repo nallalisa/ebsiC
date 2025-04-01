@@ -23,6 +23,13 @@
                 <TabItem Header="Manage Admin" 
                          Foreground="#000000">
                     <Grid Margin="5">
+                        <TextBox BorderBrush="#000000"
+                                 BorderThickness="1"
+                                 HorizontalAlignment="Left"
+                                 Margin="3 0 3 50"
+                                 Width="250"
+                                 Height="30">
+                        </TextBox>
                         <Button Margin="3 0 3 50"
                                 Width="185"
                                 Foreground="#000000"
