@@ -12,16 +12,13 @@
             <RowDefinition MaxHeight="525"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-        </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="1">
-            <Button Grid.Row="1" Grid.Column="3"></Button>
-            <Button Grid.Row="1" Grid.Column="4"></Button>
+        <StackPanel Grid.Row="1"                                Orientation="Horizontal"                    HorizontalAlignment="Right"
+                    Margin="10">
+            <Button Width="100"
+                    Content="Previous"></Button>
+            <Button Width="100"
+                    Content="Next"></Button>
         </StackPanel>
     </Grid>
 </UserControl>
