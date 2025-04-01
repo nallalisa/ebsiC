@@ -13,6 +13,71 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="0 0 0 175"
+                    Height="125">
+            <TextBlock Margin="30"
+                       Padding="15"
+                       Width="100"
+                       Height="60"
+                       TextWrapping="Wrap"
+                       Text="Personal Information"
+                       TextAlignment="Center"
+                       Foreground="#000000"
+                       Background="LightBlue"></TextBlock>
+            <TextBlock Margin="30"
+                       Padding="15"
+                       Width="100"
+                       Height="60"
+                       TextWrapping="Wrap"
+                       Text="Address"
+                       TextAlignment="Center"
+                       Foreground="#000000"
+                       Background="LightBlue"></TextBlock>
+            <TextBlock Margin="30"
+                       Padding="15"
+                       Width="100"
+                       Height="60"
+                       TextWrapping="Wrap"
+                       Text="Employment Information"
+                       TextAlignment="Center"
+                       Foreground="#000000"
+                       Background="LightBlue"></TextBlock>
+            <TextBlock Margin="30"
+                       Padding="15"
+                       Width="100"
+                       Height="60"
+                       TextWrapping="Wrap"
+                       Text="Personal Information"
+                       TextAlignment="Center"
+                       Foreground="#000000"
+                       Background="LightBlue"></TextBlock>
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Height="125">
+            <Label Grid.Row="0"
+                   Margin="30 0 30 0"
+                   Padding="15"
+                   Height="50"
+                   Foreground="#000000"
+                   Content="Employee ID"></Label>
+            <Label Grid.Row="1"
+                   Margin="30 0 30 0"
+                   Padding="15"
+                   Height="50"
+                   Foreground="#000000"
+                   Content="Employee ID"></Label>
+            <Label Grid.Row="2"
+                   Margin="30 0 30 0"
+                   Padding="15"
+                   Height="50"
+                   Foreground="#000000"
+                   Content="Employee ID"></Label>
+        </StackPanel>
+        
         <StackPanel Grid.Row="1"                                Orientation="Horizontal"                    HorizontalAlignment="Right"
                     Margin="10">
             <Button Width="100"
