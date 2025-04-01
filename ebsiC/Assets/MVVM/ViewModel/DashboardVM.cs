@@ -93,7 +93,7 @@ namespace ebsiC.Assets.MVVM.ViewModel
                     break;
                 case "Payroll":
                     CurrentView = new Administration();
-                    PageTitle = "Administration";
+                    PageTitle = "NewEmployeeForm";
                     break;
                 case "Administration":
                     CurrentView = new Administration();
