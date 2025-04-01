@@ -77,13 +77,15 @@
                    Foreground="#000000"
                    Content="Employee ID"></Label>
         </StackPanel>
-        
+
         <StackPanel Grid.Row="1"                                Orientation="Horizontal"                    HorizontalAlignment="Right"
                     Margin="10">
             <Button Width="100"
-                    Content="Previous"></Button>
+                    Content="Previous"
+                    Margin="10"></Button>
             <Button Width="100"
-                    Content="Next"></Button>
+                    Content="Next"
+                    Margin="10"></Button>
         </StackPanel>
     </Grid>
 </UserControl>
