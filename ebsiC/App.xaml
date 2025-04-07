@@ -9,8 +9,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <materialDesign:CustomColorTheme BaseTheme="Inherit" 
                                                  ColorAdjustment="{materialDesign:ColorAdjustment}"
-                                                 PrimaryColor="#043b8b"
-                                                 SecondaryColor="#0d2a54"/>
+                                                 PrimaryColor="white"
+                                                 SecondaryColor="black"/>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
                 <ResourceDictionary Source="Assets/Themes/WindowStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
