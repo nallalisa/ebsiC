@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ebsiC.Assets.MVVM.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,14 +16,12 @@ using System.Windows.Shapes;
 
 namespace ebsiC.Assets.MVVM.View.admin
 {
-    /// <summary>
-    /// Interaction logic for Administration.xaml
-    /// </summary>
     public partial class Administration : UserControl
     {
         public Administration()
         {
             InitializeComponent();
+            this.DataContext = new TabsVM();
         }
     }
 }

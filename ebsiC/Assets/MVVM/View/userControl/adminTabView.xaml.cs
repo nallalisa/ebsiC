@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace ebsiC.Assets.MVVM.View.userControl
 {
     /// <summary>
-    /// Interaction logic for TabControls.xaml
+    /// Interaction logic for adminTabView.xaml
     /// </summary>
-    public partial class TabControls : UserControl
+    public partial class adminTabView : UserControl
     {
-        public TabControls()
+        public adminTabView()
         {
             InitializeComponent();
         }

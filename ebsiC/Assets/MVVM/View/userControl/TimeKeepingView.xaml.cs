@@ -85,6 +85,39 @@ namespace ebsiC.Assets.MVVM.View.userControl
             return "No Overtime";
         }
 
+        private string CalculateNightDiffHours(DateTime? firstIn, DateTime? lastOut)
+        {
+            if (firstIn.HasValue && lastOut.HasValue)
+            {
+                if (lastOut < firstIn) lastOut = lastOut.Value.AddDays(1);
+
+                DateTime start = firstIn.Value;
+                DateTime end = lastOut.Value;
+
+                TimeSpan totalNTD = TimeSpan.Zero;
+
+                DateTime ntdStart = new DateTime(start.Year, start.Month, start.Day, 22, 0, 0); // 10:00 PM
+                DateTime ntdEnd = ntdStart.AddHours(8); // 6:00 AM next day
+
+                while (ntdStart < end)
+                {
+                    DateTime currentStart = ntdStart < start ? start : ntdStart;
+                    DateTime currentEnd = ntdEnd > end ? end : ntdEnd;
+
+                    if (currentStart < currentEnd)
+                        totalNTD += currentEnd - currentStart;
+
+                    ntdStart = ntdStart.AddDays(1);
+                    ntdEnd = ntdEnd.AddDays(1);
+                }
+
+                return $"{(int)totalNTD.TotalHours} hr(s) {totalNTD.Minutes} mins";
+            }
+
+            return "0 hr(s) 0 mins";
+        }
+
+
         private DataTable ReadExcel(string filePath)
         {
             DataTable dt = new DataTable();
@@ -95,6 +128,7 @@ namespace ebsiC.Assets.MVVM.View.userControl
             dt.Columns.Add("OUT");
             dt.Columns.Add("HoursRendered");
             dt.Columns.Add("OTRendered");
+            dt.Columns.Add("NightDiff");
 
             using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
@@ -160,6 +194,7 @@ namespace ebsiC.Assets.MVVM.View.userControl
                     }
 
                     string hoursRendered = CalculateHoursRendered(firstIn, lastRowOut);
+                    string nightDiff = CalculateNightDiffHours(firstIn, lastRowOut);
 
                     DataRow newRow = dt.NewRow();
                     newRow["EmployeeNo"] = empNo;
@@ -169,6 +204,7 @@ namespace ebsiC.Assets.MVVM.View.userControl
                     newRow["OUT"] = lastRowOut?.ToString("hh:mm tt");
                     newRow["HoursRendered"] = hoursRendered;
                     newRow["OTRendered"] = Overtime(firstIn, lastRowOut);
+                    newRow["NightDiff"] = nightDiff;
                     dt.Rows.Add(newRow);
 
                     lastRow = newRow;

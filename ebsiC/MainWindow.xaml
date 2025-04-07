@@ -9,7 +9,7 @@
         xmlns:class="clr-namespace:ebsiC.Assets.Classes"
         mc:Ignorable="d"
         Style="{StaticResource winForm}"
-        Background="#94cdf7">
+        Background="#152850">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -32,18 +32,18 @@
                         <ImageBrush ImageSource="Assets/Images/src/logo.png"/>
                     </Rectangle.Fill>
                 </Rectangle>
-                <uc:textBox materialDesign:HintAssist.Hint="Username"
+                <uc:textBox x:Name="txtUsername" materialDesign:HintAssist.Hint="Username"
                             Margin="40, 30, 40, 0"/>
-                <uc:passwordBox materialDesign:HintAssist.Hint="Password"
+                <uc:CustomPasswordBox x:Name="txtPassword" materialDesign:HintAssist.Hint="Password"
                                 Margin="40, 30, 40, 0"/>
-                <Button Content="LOGIN"
+                <Button x:Name="btnLogin" Content="LOGIN"
                         Style="{StaticResource MaterialDesignRaisedButton}"
-                        Background="#136682"
+                        Background="#152850"
                         Foreground="white"
                         Margin="40, 40, 40, 0"
                         Height="50"
                         Width="170"
-                        materialDesign:ButtonAssist.CornerRadius="25"/>
+                        materialDesign:ButtonAssist.CornerRadius="25" Click="btnLogin_Click" />
             </StackPanel>
         </materialDesign:Card>
     </Grid>
