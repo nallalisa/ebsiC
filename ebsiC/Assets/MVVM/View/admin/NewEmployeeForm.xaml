@@ -13,7 +13,8 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal"
+        <StackPanel Grid.Row="0"
+                    Orientation="Horizontal"
                     HorizontalAlignment="Center"
                     Margin="0 0 0 175"
                     Height="125">
@@ -55,7 +56,8 @@
                        Background="LightBlue"></TextBlock>
         </StackPanel>
         
-        <StackPanel Orientation="Horizontal"
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal"
                     Height="125">
             <Label Margin="30 0 30 0"
                    Padding="15"
@@ -76,7 +78,7 @@
                    HorizontalContentAlignment="Right"></Label>
         </StackPanel>
 
-        <StackPanel Grid.Row="1"                                Orientation="Horizontal"                    HorizontalAlignment="Right"
+        <StackPanel Grid.Row="2"                                    Orientation="Horizontal"                        HorizontalAlignment="Right"
                     Margin="10">
             <Button Width="100"
                     Content="Previous"
