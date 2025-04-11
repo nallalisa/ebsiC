@@ -1,4 +1,5 @@
 ﻿using ebsiC.Assets.Classes;
+using ebsiC.Assets.MVVM.View;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,7 +26,10 @@ namespace ebsiC
 
             if (dbUtility.ValidateUser(username, password))
             {
-                MessageBox.Show("Login successful!");
+                SessionManager.loggedInUser = username;
+                Dashboard dashboard = new Dashboard();
+                dashboard.Show();
+                this.Close();
             }
             else
             {

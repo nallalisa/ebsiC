@@ -72,7 +72,7 @@
 
                     <!-- Welcome Text -->
                     <TextBlock Grid.Column="1"
-                               Text="Welcome, User"
+                               x:Name="txtWelcome"
                                FontSize="18"
                                VerticalAlignment="Center"
                                Foreground="Black"

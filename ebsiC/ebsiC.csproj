@@ -10,11 +10,12 @@
 
   <ItemGroup>
     <None Remove="ebsiDB" />
+    <None Remove="ebsiDB.db" />
     <None Remove="white-logo-small.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="ebsiDB">
+    <Content Include="ebsiDB.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
