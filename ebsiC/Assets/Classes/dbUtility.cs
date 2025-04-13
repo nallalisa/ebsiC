@@ -11,14 +11,19 @@ namespace ebsiC.Assets.Classes
         {
             var connection = new SQLiteConnection(connectionString);
             connection.Open();
+
+            using (var command = new SQLiteCommand("PRAGMA foreign_keys = ON;", connection))
+            {
+                command.ExecuteNonQuery();
+            }
+
             return connection;
         }
-
         public static bool ValidateUser(string username, string password)
         {
             using (var conn = GetConnection())
             {
-                string query = "SELECT COUNT(1) FROM admin WHERE username = @username AND password = @password";
+                string query = "SELECT COUNT(1) FROM users WHERE username = @username AND password = @password";
                 using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@username", username);

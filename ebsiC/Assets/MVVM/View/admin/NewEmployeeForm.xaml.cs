@@ -18,7 +18,7 @@ namespace ebsiC.Assets.MVVM.View.admin
     /// <summary>
     /// Interaction logic for NewEmployeeForm.xaml
     /// </summary>
-    public partial class NewEmployeeForm : UserControl
+    public partial class NewEmployeeForm : Window
     {
         public NewEmployeeForm()
         {

@@ -7,7 +7,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         xmlns:uc="clr-namespace:ebsiC.Assets.MVVM.View.userControl"
-        xmlns:vm="clr-namespace:ebsiC.Assets.MVVM.ViewModel" 
+        xmlns:vm="clr-namespace:ebsiC.Assets.MVVM.ViewModel" xmlns:local1="clr-namespace:ebsiC.Assets.MVVM.View.admin"
         Background="#c9c6c5"
         Style="{StaticResource winForm}"
         Title="Dashboard" Height="768" Width="1366">

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ebsiC.Assets.MVVM.View.admin;
+using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,5 +26,13 @@ namespace ebsiC.Assets.MVVM.View.userControl
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var modal = new NewEmployeeForm();
+            modal.Owner = Window.GetWindow(this);
+            modal.ShowDialog();
+        }
+
     }
 }

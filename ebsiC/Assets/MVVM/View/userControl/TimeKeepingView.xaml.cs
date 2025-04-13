@@ -21,7 +21,7 @@ namespace ebsiC.Assets.MVVM.View.userControl
         {
             OpenFileDialog opf = new OpenFileDialog
             {
-                Filter = "Excel Files (*.xlsx)|*.xlsx|All files (*.*)|*.*"
+                Filter = "Excel Files (*.xlsx;*.xls)|*.xlsx;*.xls|All files (*.*)|*.*"
             };
 
             if (opf.ShowDialog() == true)
