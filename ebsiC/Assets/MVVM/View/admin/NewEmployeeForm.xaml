@@ -5,18 +5,18 @@
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 			 xmlns:local="clr-namespace:ebsiC.Assets.MVVM.View.admin"
 			 mc:Ignorable="d" 
-			 d:DesignHeight="450" d:DesignWidth="700">
+			 d:DesignHeight="500" d:DesignWidth="775">
 	<Grid Margin="10"
 	      Background="#FFFFFF">
 		<Grid.RowDefinitions>
-			<RowDefinition MaxHeight="525"/>
+			<RowDefinition MaxHeight="500"/>
 			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 
 		<StackPanel Grid.Row="0"
 				Orientation="Horizontal"
 				HorizontalAlignment="Center"
-				Margin="0,0,0,359">
+				Margin="0,0,0,325">
 			<TextBlock Margin="30"
 				   Padding="15"
 				   Width="100"
@@ -138,52 +138,94 @@
 				</StackPanel>
 			</StackPanel>
 
-			<StackPanel Grid.Row="0"
-                        Orientation="Horizontal"
-                        Margin="0 5 0 5">
-				<StackPanel Orientation="Vertical"
-                            Margin="25 0 25 0"
-                            Height="55"
-                            Width="200">
-					<Label Padding="5"
-                           Height="30"
-                           Foreground="#0F0F0F"
-                           Content="Gender"></Label>
-					<StackPanel Orientation="Horizontal"
-                                Margin="0 5 0 5">
-						<RadioButton Content="Male"
-                                     Margin="5 0 15 0"></RadioButton>
-						<RadioButton Content="Female"
-                                     Margin="15 0 5 0"></RadioButton>
-					</StackPanel>
-				</StackPanel>
-				<StackPanel Orientation="Vertical"
-                            Margin="25 0 25 0"
-                            Height="55">
-					<Label Padding="5"
-                           Height="30"
-                           Foreground="#0F0F0F"
-                           Content="Date of Birth"></Label>
-					<TextBox BorderBrush="#FFC1C1C1"
-	                         BorderThickness="2"
-	                         Height="25"
-                             Width="200"></TextBox>
-				</StackPanel>
-				<StackPanel Orientation="Vertical"
-                            Margin="25 0 25 0"
-                            Height="55">
-					<Label Padding="5"
-                           Height="30"
-                           Foreground="#0F0F0F"
-                           Content="Civil Status"></Label>
-					<TextBox BorderBrush="#FFC1C1C1"
-	                         BorderThickness="2"
-	                         Height="25"
-                             Width="200"></TextBox>
-				</StackPanel>
-			</StackPanel>
+            <StackPanel Grid.Row="0"                                    
+            Orientation="Horizontal"
+            Margin="0 5 0 5">
+                <StackPanel Orientation="Vertical"
+                Margin="25 0 25 0"
+                Height="55"
+                Width="200">
+                    <Label Padding="5"
+               Height="30"
+               Foreground="#0F0F0F"
+               Content="Gender"></Label>
+                    <StackPanel Orientation="Horizontal"
+                    Margin="0 5 0 5">
+                        <RadioButton Content="Male"
+                         Margin="5 0 15 0"></RadioButton>
+                        <RadioButton Content="Female"
+                         Margin="15 0 5 0"></RadioButton>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Vertical"
+                Margin="25 0 25 0"
+                Height="55">
+                    <Label Padding="5"
+               Height="30"
+               Foreground="#0F0F0F"
+               Content="Date of Birth"></Label>
+                    <DatePicker Width="200"></DatePicker>
+                    <!-- <TextBox BorderBrush="#FFC1C1C1"
+                 BorderThickness="2"
+                 Height="25"
+                 Width="200"></TextBox> -->
+                </StackPanel>
+                <StackPanel Orientation="Vertical"
+                Margin="25 0 25 0"
+                Height="55">
+                    <Label Padding="5"
+               Height="30"
+               Foreground="#0F0F0F"
+               Content="Civil Status"></Label>
+                    <TextBox BorderBrush="#FFC1C1C1"
+                 BorderThickness="2"
+                 Height="25"
+                 Width="200"></TextBox>
+                </StackPanel>
+            </StackPanel>
 
-			<StackPanel Grid.Row="1"
+            <StackPanel Grid.Row="0"                                    
+						Orientation="Horizontal"
+						Margin="0 5 0 5">
+                <StackPanel Orientation="Vertical"
+							Margin="25 0 25 0"
+							Height="55">
+                    <Label Padding="5"
+						   Height="30"
+						   Foreground="#0F0F0F"
+						   Content="Lastname"></Label>
+                    <TextBox BorderBrush="#FFC1C1C1"
+							 BorderThickness="2"
+							 Height="25"
+							 Width="200"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical"
+							Margin="25 0 25 0"
+							Height="55">
+                    <Label Padding="5"
+						   Height="30"
+						   Foreground="#0F0F0F"
+						   Content="Firstname"></Label>
+                    <TextBox BorderBrush="#FFC1C1C1"
+							 BorderThickness="2"
+							 Height="25"
+							 Width="200"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical"
+							Margin="25 0 25 0"
+							Height="55">
+                    <Label Padding="5"
+						   Height="30"
+						   Foreground="#0F0F0F"
+						   Content="Middle Name"></Label>
+                    <TextBox BorderBrush="#FFC1C1C1"
+							 BorderThickness="2"
+							 Height="25"
+							 Width="200"></TextBox>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1"
 						Orientation="Horizontal"
 						HorizontalAlignment="Right"
 						Margin="10">
