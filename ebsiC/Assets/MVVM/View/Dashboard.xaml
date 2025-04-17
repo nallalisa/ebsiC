@@ -23,7 +23,6 @@
             <!-- Main Content -->
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-
         <!-- Left Side NavBar -->
         <uc:NavigationBar DataContext="{Binding}"/>
 

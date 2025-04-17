@@ -9,7 +9,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <Grid Margin="10">
+    <materialDesign:DialogHost>
+        <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="75"/>
             <RowDefinition/>
@@ -25,18 +26,19 @@
             </StackPanel>
             
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                
-                <Button Background="green" Click="Button_Click">
-                    <Button.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Add"
+
+                <Button Background="green"
+                        Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Add"
                                                      VerticalAlignment="Center"
                                                      Margin="5"/>
-                            <TextBlock Text="Administrator"
+                                <TextBlock Text="Administrator"
                                        VerticalAlignment="center"/>
-                        </StackPanel>
-                    </Button.Content>
-                </Button>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
             </StackPanel>
         </Grid>
         <DataGrid x:Name="DataGridAdmin" 
@@ -56,4 +58,8 @@
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
+        <materialDesign:DialogHost.DialogContent>
+            <local:addEmployee/>
+        </materialDesign:DialogHost.DialogContent>
+    </materialDesign:DialogHost>
 </UserControl>

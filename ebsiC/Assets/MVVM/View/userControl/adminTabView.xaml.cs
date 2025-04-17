@@ -26,13 +26,5 @@ namespace ebsiC.Assets.MVVM.View.userControl
         {
             InitializeComponent();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var modal = new NewEmployeeForm();
-            modal.Owner = Window.GetWindow(this);
-            modal.ShowDialog();
-        }
-
     }
 }

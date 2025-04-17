@@ -23,7 +23,7 @@ namespace ebsiC.Assets.Classes
         {
             using (var conn = GetConnection())
             {
-                string query = "SELECT COUNT(1) FROM users WHERE username = @username AND password = @password";
+                string query = "SELECT COUNT(1) FROM users WHERE username = @username AND passwordHash = @password";
                 using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@username", username);

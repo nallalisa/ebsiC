@@ -11,6 +11,7 @@ namespace ebsiC.Assets.MVVM.ViewModel
     public class TabsVM
     {
         public ObservableCollection<TabItemModel> adminTabs { get; set; }
+        public ObservableCollection<TabItemModel> employeeForm { get; set; }
         public int CurrentIndex { get; set; }
         public TabsVM()
         {
@@ -19,6 +20,7 @@ namespace ebsiC.Assets.MVVM.ViewModel
                 new TabItemModel { Header = "Admin", Content = new adminTabView() },
                 new TabItemModel { Header = "Employee", Content = new empTabView() },
             };
+
             CurrentIndex = 0;
         }
     }
