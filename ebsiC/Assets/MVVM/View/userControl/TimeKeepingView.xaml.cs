@@ -21,7 +21,7 @@ namespace ebsiC.Assets.MVVM.View.userControl
         {
             OpenFileDialog opf = new OpenFileDialog
             {
-                Filter = "Excel Files (*.xlsx)|*.xlsx|All files (*.*)|*.*"
+                Filter = "Excel Files (*.xlsx;*.xls)|*.xlsx;*.xls|All files (*.*)|*.*"
             };
 
             if (opf.ShowDialog() == true)
@@ -45,6 +45,79 @@ namespace ebsiC.Assets.MVVM.View.userControl
                 MessageBox.Show("No data to export!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+        private TimeSpan? GetRenderedDuration(DateTime? firstIn, DateTime? lastOut)
+        {
+            if (firstIn.HasValue && lastOut.HasValue)
+            {
+                if (lastOut.Value < firstIn.Value) lastOut = lastOut.Value.AddDays(1);
+                TimeSpan duration = lastOut.Value - firstIn.Value;
+
+                if (duration.TotalHours > 24) return null;
+
+                if (duration.TotalHours >= 9)
+                {
+                    duration = duration.Subtract(TimeSpan.FromHours(1));
+                }
+
+                return duration;
+            }
+            return null;
+        }
+
+        private string CalculateHoursRendered(DateTime? firstIn, DateTime? lastOut)
+        {
+            var duration = GetRenderedDuration(firstIn, lastOut);
+            if (duration.HasValue)
+                return $"{(int)duration.Value.TotalHours} hr(s) {duration.Value.Minutes} mins";
+            else if (firstIn.HasValue) return "No Time OUT";
+            else if (lastOut.HasValue) return "No Time IN";
+            return "No Time IN and OUT";
+        }
+
+        private string Overtime(DateTime? firstIn, DateTime? lastOut)
+        {
+            var duration = GetRenderedDuration(firstIn, lastOut);
+            if (duration.HasValue && duration.Value.TotalHours > 8)
+            {
+                TimeSpan overtime = duration.Value - TimeSpan.FromHours(8);
+                return $"{overtime.Hours} hr(s) {overtime.Minutes} mins";
+            }
+            return "No Overtime";
+        }
+
+        private string CalculateNightDiffHours(DateTime? firstIn, DateTime? lastOut)
+        {
+            if (firstIn.HasValue && lastOut.HasValue)
+            {
+                if (lastOut < firstIn) lastOut = lastOut.Value.AddDays(1);
+
+                DateTime start = firstIn.Value;
+                DateTime end = lastOut.Value;
+
+                TimeSpan totalNTD = TimeSpan.Zero;
+
+                DateTime ntdStart = new DateTime(start.Year, start.Month, start.Day, 22, 0, 0); // 10:00 PM
+                DateTime ntdEnd = ntdStart.AddHours(8); // 6:00 AM next day
+
+                while (ntdStart < end)
+                {
+                    DateTime currentStart = ntdStart < start ? start : ntdStart;
+                    DateTime currentEnd = ntdEnd > end ? end : ntdEnd;
+
+                    if (currentStart < currentEnd)
+                        totalNTD += currentEnd - currentStart;
+
+                    ntdStart = ntdStart.AddDays(1);
+                    ntdEnd = ntdEnd.AddDays(1);
+                }
+
+                return $"{(int)totalNTD.TotalHours} hr(s) {totalNTD.Minutes} mins";
+            }
+
+            return "0 hr(s) 0 mins";
+        }
+
+
         private DataTable ReadExcel(string filePath)
         {
             DataTable dt = new DataTable();
@@ -54,12 +127,13 @@ namespace ebsiC.Assets.MVVM.View.userControl
             dt.Columns.Add("IN");
             dt.Columns.Add("OUT");
             dt.Columns.Add("HoursRendered");
+            dt.Columns.Add("OTRendered");
+            dt.Columns.Add("NightDiff");
 
-            using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+            using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
                 IWorkbook workbook = new XSSFWorkbook(fs);
                 ISheet sheet = workbook.GetSheetAt(0);
-
                 int rowStart = 6;
 
                 DateTime? lastValidDate = null;
@@ -78,15 +152,19 @@ namespace ebsiC.Assets.MVVM.View.userControl
                     string? name = row.GetCell(1)?.ToString();
                     DateTime? date = ParseDate(row.GetCell(2));
 
-                    DateTime? in1 = ParseTime(row.GetCell(3));
-                    DateTime? out1 = ParseTime(row.GetCell(4));
-                    DateTime? in2 = ParseTime(row.GetCell(5));
-                    DateTime? out2 = ParseTime(row.GetCell(6));
-                    DateTime? in3 = ParseTime(row.GetCell(7));
-                    DateTime? out3 = ParseTime(row.GetCell(8));
+                    List<DateTime?> inTimes = new List<DateTime?>
+                    {
+                        ParseTime(row.GetCell(3)),
+                        ParseTime(row.GetCell(5)),
+                        ParseTime(row.GetCell(7))
+                    };
 
-                    List<DateTime?> inTimes = new List<DateTime?> { in1, in2, in3 };
-                    List<DateTime?> outTimes = new List<DateTime?> { out1, out2, out3 };
+                    List<DateTime?> outTimes = new List<DateTime?>
+                    {
+                        ParseTime(row.GetCell(4)),
+                        ParseTime(row.GetCell(6)),
+                        ParseTime(row.GetCell(8))
+                    };
 
                     DateTime? firstIn = inTimes.Where(t => t.HasValue).Min();
                     DateTime? lastRowOut = outTimes.Where(t => t.HasValue).Max();
@@ -116,6 +194,7 @@ namespace ebsiC.Assets.MVVM.View.userControl
                     }
 
                     string hoursRendered = CalculateHoursRendered(firstIn, lastRowOut);
+                    string nightDiff = CalculateNightDiffHours(firstIn, lastRowOut);
 
                     DataRow newRow = dt.NewRow();
                     newRow["EmployeeNo"] = empNo;
@@ -124,6 +203,8 @@ namespace ebsiC.Assets.MVVM.View.userControl
                     newRow["IN"] = firstIn?.ToString("hh:mm tt");
                     newRow["OUT"] = lastRowOut?.ToString("hh:mm tt");
                     newRow["HoursRendered"] = hoursRendered;
+                    newRow["OTRendered"] = Overtime(firstIn, lastRowOut);
+                    newRow["NightDiff"] = nightDiff;
                     dt.Rows.Add(newRow);
 
                     lastRow = newRow;
@@ -160,19 +241,6 @@ namespace ebsiC.Assets.MVVM.View.userControl
             if (DateTime.TryParse(timeString, out DateTime result)) return result;
             return null;
         }
-
-        private string CalculateHoursRendered(DateTime? firstIn, DateTime? lastOut)
-        {
-            if (firstIn.HasValue && lastOut.HasValue)
-            {
-                if (lastOut.Value < firstIn.Value) lastOut = lastOut.Value.AddDays(1);
-                TimeSpan duration = lastOut.Value - firstIn.Value;
-                return $"{(int)duration.TotalHours} hrs {duration.Minutes} mins";
-            }
-            else if (firstIn.HasValue) return "No Time OUT";
-            else if (lastOut.HasValue) return "No Time IN";
-            return "No Time IN and OUT";
-        }
         private void ExportToExcel(DataTable dt)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog
@@ -187,7 +255,7 @@ namespace ebsiC.Assets.MVVM.View.userControl
                 IWorkbook workbook = new XSSFWorkbook();
                 ISheet sheet = workbook.CreateSheet("Attendance Report");
 
-                //Header Style
+                // Header Style
                 ICellStyle headerStyle = workbook.CreateCellStyle();
                 IFont headerFont = workbook.CreateFont();
                 headerFont.IsBold = true;
@@ -221,20 +289,25 @@ namespace ebsiC.Assets.MVVM.View.userControl
                 timeStyle.CloneStyleFrom(cellStyle);
                 timeStyle.DataFormat = workbook.CreateDataFormat().GetFormat("hh:mm AM/PM");
 
-                // Highlighted Data Styles
-                ICellStyle lateCellStyle = workbook.CreateCellStyle();
+                //Light Red RGB Color
+                XSSFColor lightRed = new XSSFColor(new byte[] { 255, 204, 203 });
+
+                // Late Cell Style (General)
+                XSSFCellStyle lateCellStyle = (XSSFCellStyle)workbook.CreateCellStyle();
                 lateCellStyle.CloneStyleFrom(cellStyle);
-                lateCellStyle.FillForegroundColor = IndexedColors.Red.Index;
+                lateCellStyle.SetFillForegroundColor(lightRed);
                 lateCellStyle.FillPattern = FillPattern.SolidForeground;
 
-                ICellStyle lateDateStyle = workbook.CreateCellStyle();
+                // Late Date Style
+                XSSFCellStyle lateDateStyle = (XSSFCellStyle)workbook.CreateCellStyle();
                 lateDateStyle.CloneStyleFrom(dateStyle);
-                lateDateStyle.FillForegroundColor = IndexedColors.Red.Index;
+                lateDateStyle.SetFillForegroundColor(lightRed);
                 lateDateStyle.FillPattern = FillPattern.SolidForeground;
 
-                ICellStyle lateTimeStyle = workbook.CreateCellStyle();
+                // Late Time Style
+                XSSFCellStyle lateTimeStyle = (XSSFCellStyle)workbook.CreateCellStyle();
                 lateTimeStyle.CloneStyleFrom(timeStyle);
-                lateTimeStyle.FillForegroundColor = IndexedColors.Red.Index;
+                lateTimeStyle.SetFillForegroundColor(lightRed);
                 lateTimeStyle.FillPattern = FillPattern.SolidForeground;
 
                 IRow headerRow = sheet.CreateRow(0);
@@ -253,7 +326,7 @@ namespace ebsiC.Assets.MVVM.View.userControl
                     string? inTimeStr = dt.Rows[i]["IN"]?.ToString();
                     if (DateTime.TryParse(inTimeStr, out DateTime inTime))
                     {
-                        if (inTime.TimeOfDay > new TimeSpan(8, 0, 0))
+                        if (inTime.TimeOfDay > new TimeSpan(8, 0, 0)) // Late if after 8:00 AM
                         {
                             isLate = true;
                         }
@@ -282,6 +355,7 @@ namespace ebsiC.Assets.MVVM.View.userControl
                         }
                     }
                 }
+
                 for (int i = 0; i < dt.Columns.Count; i++)
                 {
                     sheet.AutoSizeColumn(i);

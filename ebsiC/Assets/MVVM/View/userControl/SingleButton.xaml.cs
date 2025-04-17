@@ -15,19 +15,14 @@ using System.Windows.Shapes;
 
 namespace ebsiC.Assets.MVVM.View.userControl
 {
-    public partial class textBox : UserControl
+    /// <summary>
+    /// Interaction logic for SingleButton.xaml
+    /// </summary>
+    public partial class SingleButton : UserControl
     {
-        public static readonly DependencyProperty TextProperty =
-            DependencyProperty.Register("Text", typeof(string), typeof(textBox), new PropertyMetadata(string.Empty));
-        public textBox()
+        public SingleButton()
         {
             InitializeComponent();
-        }
-
-        public string Text
-        {
-            get { return (string)GetValue(TextProperty); }
-            set { SetValue(TextProperty, value); }
         }
     }
 }

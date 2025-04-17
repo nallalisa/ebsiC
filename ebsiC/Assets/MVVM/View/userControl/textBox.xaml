@@ -10,6 +10,7 @@
     <TextBox Height="55"
              VerticalAlignment="Top"
              Foreground="White"
+             Text="{Binding Text, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=TwoWay}"
              FontSize="16"
              VerticalContentAlignment="Center"
              materialDesign:HintAssist.HintPaddingBrush="#454545"

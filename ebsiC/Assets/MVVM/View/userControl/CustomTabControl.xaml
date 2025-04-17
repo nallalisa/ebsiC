@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="ebsiC.Assets.MVVM.View.userControl.CustomTabControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ebsiC.Assets.MVVM.View.userControl"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <TabControl ItemsSource="{Binding Tabs, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                SelectedIndex="{Binding SelectedTabIndex, RelativeSource={RelativeSource AncestorType=UserControl}}">
+        <TabControl.ItemTemplate>
+            <DataTemplate>
+                <TextBlock Text="{Binding Header}" Padding="10,4"/>
+            </DataTemplate>
+        </TabControl.ItemTemplate>
+        <TabControl.ContentTemplate>
+            <DataTemplate>
+                <ContentControl Content="{Binding Content}"/>
+            </DataTemplate>
+        </TabControl.ContentTemplate>
+    </TabControl>
+</UserControl>

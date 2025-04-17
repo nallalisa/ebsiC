@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using ebsiC.Assets.Classes;
+using ebsiC.Assets.MVVM.View;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,6 +18,23 @@ namespace ebsiC
         public MainWindow()
         {
             InitializeComponent();
+        }
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            string username = txtUsername.Text.Trim();
+            string password = txtPassword.Password.Trim();
+
+            if (dbUtility.ValidateUser(username, password))
+            {
+                SessionManager.loggedInUser = username;
+                Dashboard dashboard = new Dashboard();
+                dashboard.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Invalid username or password.");
+            }
         }
     }
 }

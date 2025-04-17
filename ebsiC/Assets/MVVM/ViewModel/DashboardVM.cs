@@ -1,5 +1,6 @@
 ﻿using ebsiC.Assets.Classes;
 using ebsiC.Assets.MVVM.Model;
+using ebsiC.Assets.MVVM.View.admin;
 using ebsiC.Assets.MVVM.View.userControl;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -64,10 +65,13 @@ namespace ebsiC.Assets.MVVM.ViewModel
                 new DashboardCardVM(new DashboardCardModel("#ff5733", "Leave", "3000", "ClockOutline"))
             };
 
+            //ADDING NAVIGATION
             SampleList = new ObservableCollection<Navigation>
             {
                 new Navigation { Title = "Dashboard", SelectedIcon = "ViewDashboard", UnselectedIcon = "ViewDashboardOutline" },
-                new Navigation { Title = "Attendance", SelectedIcon = "ClockCheck", UnselectedIcon = "ClockOutline" }
+                new Navigation { Title = "Attendance", SelectedIcon = "ClockCheck", UnselectedIcon = "ClockOutline" },
+                new Navigation { Title = "Payroll" },
+                new Navigation { Title = "Administration" }
             };
 
             SelectedNavigation = SampleList[0];
@@ -86,6 +90,14 @@ namespace ebsiC.Assets.MVVM.ViewModel
                 case "Attendance":
                     CurrentView = new TimeKeepingView();
                     PageTitle = "Attendance";
+                    break;
+                case "Payroll":
+                    CurrentView = new Administration();
+                    PageTitle = "NewEmployeeForm";
+                    break;
+                case "Administration":
+                    CurrentView = new Administration();
+                    PageTitle = "Administration";
                     break;
                 default:
                     CurrentView = new DashboardView();

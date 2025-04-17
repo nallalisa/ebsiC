@@ -1,4 +1,5 @@
-﻿using ebsiC.Assets.MVVM.ViewModel;
+﻿using ebsiC.Assets.Classes;
+using ebsiC.Assets.MVVM.ViewModel;
 using System.Windows;
 
 namespace ebsiC.Assets.MVVM.View
@@ -11,6 +12,7 @@ namespace ebsiC.Assets.MVVM.View
         public Dashboard()
         {
             InitializeComponent();
+            txtWelcome.Text = $"Welcome {SessionManager.loggedInUser}";
             DataContext = new DashboardVM();
         }
     }
