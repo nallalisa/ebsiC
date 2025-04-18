@@ -8,6 +8,6 @@ namespace ebsiC.Assets.Classes
 {
     public static class SessionManager
     {
-        public static string loggedInUser { get; set; }
+        public static string? loggedInUser { get; set; }
     }
 }
