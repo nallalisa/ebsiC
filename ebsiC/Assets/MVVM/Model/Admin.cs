@@ -24,14 +24,14 @@ namespace ebsiC.Assets.MVVM.Model
 
         private string username;
 
-        public string Username
+        public required string Username
         {
             get { return username; }
             set { username = value; }
         }
 
         private string password;
-        public string Password
+        public required string Password
         {
             get { return password; }
             set { password = value; }

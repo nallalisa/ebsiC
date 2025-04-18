@@ -3,63 +3,50 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ebsiC.Assets.MVVM.View.userControl"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             mc:Ignorable="d" 
-             xmlns:userControl="clr-namespace:ebsiC.Assets.MVVM.View.userControl"
+             mc:Ignorable="d"
+             Background="#c9c6c5"
              d:DesignHeight="450" d:DesignWidth="800">
+
     <UserControl.Resources>
         <Style TargetType="TabItem">
-            <Setter Property="Foreground"
-                    Value="White"/>
-            <Setter Property="MaxWidth"
-                    Value="200"/>
-            <Setter Property="FontSize" 
-                    Value="20"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="MaxWidth" Value="200"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="IsHitTestVisible" Value="False"/>
+            <Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Header}" 
+                                   TextWrapping="Wrap"
+                                   TextAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Foreground="White"
+                                   FontSize="20"/>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="TabItem">
-                        <Border Name="Border"
-                                Background="#88C0D0" 
-                                Margin="5"
-                                Padding="10,5"
-                                BorderBrush="Transparent">
-                            <ContentPresenter x:Name="ContentSite"
-                                              VerticalAlignment="Center"
+                        <materialDesign:Card materialDesign:ElevationAssist.Elevation="Dp4" 
+                                             Name="Border"
+                                             Background="#88C0D0"
+                                             Margin="5"
+                                             Padding="10,5"
+                                             BorderBrush="Transparent">
+                            <ContentPresenter VerticalAlignment="Center"
                                               HorizontalAlignment="Center"
-                                              ContentSource="Header"
-                                              RecognizesAccessKey="True">
-                                <ContentPresenter.ContentTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding}" 
-                                                   TextWrapping="Wrap" 
-                                                   TextAlignment="Center"
-                                                   HorizontalAlignment="Center"/>
-                                    </DataTemplate>
-                                </ContentPresenter.ContentTemplate>
-                            </ContentPresenter>
-
-                        </Border>
+                                              ContentSource="Header"/>
+                        </materialDesign:Card>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsSelected" 
-                                     Value="True">
-                                <Setter TargetName="Border" 
-                                        Property="Background" 
-                                        Value="#5E81AC"/>
-                                <Setter TargetName="Border" 
-                                        Property="Effect">
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#5E81AC"/>
+                                <Setter TargetName="Border" Property="Effect">
                                     <Setter.Value>
-                                        <DropShadowEffect Color="Black"
-                                                          BlurRadius="10" 
-                                                          ShadowDepth="0"/>
+                                        <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="0"/>
                                     </Setter.Value>
                                 </Setter>
-                            </Trigger>
-                            <Trigger Property="IsMouseOver" 
-                                     Value="True">
-                                <Setter TargetName="Border" 
-                                        Property="Background"
-                                        Value="#81A1C1"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -74,64 +61,48 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid>
+
+        <Grid Background="#152850">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
+
             <TextBlock Text="Add New Employee"
                        Foreground="White"
                        VerticalAlignment="Center"
                        FontSize="32"
                        Margin="20 0 0 0"/>
+
             <Button Grid.Column="1"
-                    Width="auto"
-                    Height="auto"
-                    Margin="5"
+                    Margin="0 15 0 0"
                     BorderBrush="Transparent"
                     Background="Transparent"
-                    Foreground="white"
+                    Foreground="White"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top"
                     Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
-                    Content="{materialDesign:PackIcon Kind=WindowClose,Size=25}"/>
+                    Content="{materialDesign:PackIcon Kind=WindowClose, Size=25}"/>
         </Grid>
+
         <TabControl Grid.Row="1"
                     Margin="30"
-                    IsEnabled="False"
+                    ItemsSource="{Binding Tabs}"
+                    SelectedIndex="0"
                     x:Name="EmployeeTabControl">
-            <TabItem Header="Personal Information">
-                <Grid Margin="5">
-                    <TextBlock Text="PERSONAL INFORMATION"/>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Address">
-                <Grid Margin="5">
-                    <TextBlock Text="ADDRESS"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="center"/>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Employee Information">
-                <Grid Margin="5">
-                    <TextBlock Text="EMPLOYEE INFORMATION"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="center"/>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Government Information">
-                <Grid Margin="5">
-                    <TextBlock Text="GOVERNMENT INFORMATION"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="center"/>
-                </Grid>
-            </TabItem>
+            <TabControl.ContentTemplate>
+                <DataTemplate>
+                    <ContentPresenter Content="{Binding Content}" />
+                </DataTemplate>
+            </TabControl.ContentTemplate>
         </TabControl>
+        
         <StackPanel Grid.Row="2"
                     Orientation="Horizontal"
-                    HorizontalAlignment="Right">
-            <Button Content="Previous" Margin="10 10 0 10" Width="100" Click="Button_Click_1"/>
-            <Button Content="Next" Margin="10 10" Width="100" Click="Button_Click"/>
+                    HorizontalAlignment="Right"
+                    Margin="10">
+            <Button Content="Previous" Width="100" Margin="0 0 10 0" Click="Button_Click_1"/>
+            <Button x:Name="NextButton" Content="Next" Width="100" Click="Button_Click"/>
         </StackPanel>
     </Grid>
 </UserControl>
