@@ -58,6 +58,12 @@
 		<StackPanel Margin="0,130,0,0">
             <userControl:EmpFormPersonalInfo />
 
+			<!-- Other sections of EmpForm...
+            
+            <userControl:EmpFormAddress />
+            
+            -->
+
             <StackPanel Grid.Row="1"
 						Orientation="Horizontal"
 						HorizontalAlignment="Right"
