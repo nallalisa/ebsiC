@@ -9,8 +9,8 @@
     <Grid>
         <StackPanel Background="#FFFFFF">
             <StackPanel Grid.Row="0"
-	            Orientation="Horizontal"
-	            Margin="0 5 0 5">
+	                    Orientation="Horizontal"
+	                    Margin="0 5 0 5">
                 <StackPanel Orientation="Vertical"
                     Margin="25 0 25 0"
                     Height="55">
@@ -24,82 +24,53 @@
                                 Height="30"></DatePicker>
                 </StackPanel>
                 <StackPanel Orientation="Vertical"
-                    Margin="25 0 25 0"
-                    Height="55">
+                            Margin="25 0 25 0"
+                            Height="55">
                     <Label Padding="5"
 	                       Height="30"
 	                       Foreground="#0F0F0F"
 	                       Content="Department"></Label>
                     <TextBox BorderBrush="#FFC1C1C1"
-		             BorderThickness="2"
-		             Height="25"
-                     Width="200"></TextBox>
+		                     BorderThickness="2"
+		                     Height="25"
+                             Width="200"></TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Vertical"
-                    Margin="25 0 25 0"
-                    Height="55">
+                            Margin="25 0 25 0"
+                            Height="55">
                     <Label Padding="5"
-	               Height="30"
-	               Foreground="#0F0F0F"
-	               Content="Profile Picture"></Label>
+	                       Height="30"
+	                       Foreground="#0F0F0F"
+	                       Content="Position"></Label>
                     <TextBox BorderBrush="#FFC1C1C1"
-		             BorderThickness="2"
-		             Height="25"
-                     Width="200"></TextBox>
+		                     BorderThickness="2"
+		                     Height="25"
+                             Width="200"></TextBox>
                 </StackPanel>
             </StackPanel>
 
             <StackPanel Grid.Row="0"
-                Orientation="Horizontal"
-                Margin="0 5 0 5">
-                <StackPanel Orientation="Vertical"
-                    Margin="25 0 25 0"
-                    Height="55">
-                    <Label Padding="5"
-                   Height="30"
-                   Foreground="#0F0F0F"
-                   Content="Lastname"></Label>
-                    <TextBox BorderBrush="#FFC1C1C1"
-                     BorderThickness="2"
-                     Height="25"
-                     Width="200"></TextBox>
-                </StackPanel>
-                <StackPanel Orientation="Vertical"
-                    Margin="25 0 25 0"
-                    Height="55">
-                    <Label Padding="5"
-                   Height="30"
-                   Foreground="#0F0F0F"
-                   Content="Firstname"></Label>
-                    <TextBox BorderBrush="#FFC1C1C1"
-                     BorderThickness="2"
-                     Height="25"
-                     Width="200"></TextBox>
-                </StackPanel>
-                <StackPanel Orientation="Vertical"
-                    Margin="25 0 25 0"
-                    Height="55">
-                    <Label Padding="5"
-                   Height="30"
-                   Foreground="#0F0F0F"
-                   Content="Middle Name"></Label>
-                    <TextBox BorderBrush="#FFC1C1C1"
-                     BorderThickness="2"
-                     Height="25"
-                     Width="200"></TextBox>
-                </StackPanel>
-            </StackPanel>
-
-            <StackPanel Grid.Row="0"                                    
-                Orientation="Horizontal"
-                Margin="0 5 0 5">
+                        Orientation="Horizontal"
+                        Margin="0 5 0 5">
                 <StackPanel Orientation="Vertical"
                             Margin="25 0 25 0"
                             Height="55">
                     <Label Padding="5"
                            Height="30"
                            Foreground="#0F0F0F"
-                           Content="Employee ID"></Label>
+                           Content="Employee Type"></Label>
+                    <TextBox BorderBrush="#FFC1C1C1"
+                     BorderThickness="2"
+                     Height="25"
+                     Width="200"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical"
+                            Margin="25 0 25 0"
+                            Height="55">
+                    <Label Padding="5"
+                           Height="30"
+                           Foreground="#0F0F0F"
+                           Content="Pay Type"></Label>
                     <TextBox BorderBrush="#FFC1C1C1"
                              BorderThickness="2"
                              Height="25"
@@ -111,64 +82,11 @@
                     <Label Padding="5"
                            Height="30"
                            Foreground="#0F0F0F"
-                           Content="Employee ID"></Label>
+                           Content="Tax Status"></Label>
                     <TextBox BorderBrush="#FFC1C1C1"
                              BorderThickness="2"
                              Height="25"
                              Width="200"></TextBox>
-                </StackPanel>
-                <StackPanel Orientation="Vertical"
-                            Margin="25 0 25 0"
-                            Height="55">
-                    <Label Padding="5"
-                           Height="30"
-                           Foreground="#0F0F0F"
-                           Content="Civil Status"></Label>
-                    <TextBox BorderBrush="#FFC1C1C1"
-                             BorderThickness="2"
-                             Height="25"
-                             Width="200"></TextBox>
-                </StackPanel>
-            </StackPanel>
-
-            <StackPanel Grid.Row="0"                                    
-	            Orientation="Horizontal"
-	            Margin="0 5 0 5">
-                <StackPanel Orientation="Vertical"
-		            Margin="25 0 25 0"
-		            Height="55">
-                    <Label Padding="5"
-	               Height="30"
-	               Foreground="#0F0F0F"
-	               Content="Lastname"></Label>
-                    <TextBox BorderBrush="#FFC1C1C1"
-		             BorderThickness="2"
-		             Height="25"
-		             Width="200"></TextBox>
-                </StackPanel>
-                <StackPanel Orientation="Vertical"
-		            Margin="25 0 25 0"
-		            Height="55">
-                    <Label Padding="5"
-	               Height="30"
-	               Foreground="#0F0F0F"
-	               Content="Firstname"></Label>
-                    <TextBox BorderBrush="#FFC1C1C1"
-		             BorderThickness="2"
-		             Height="25"
-		             Width="200"></TextBox>
-                </StackPanel>
-                <StackPanel Orientation="Vertical"
-		            Margin="25 0 25 0"
-		            Height="55">
-                    <Label Padding="5"
-	               Height="30"
-	               Foreground="#0F0F0F"
-	               Content="Middle Name"></Label>
-                    <TextBox BorderBrush="#FFC1C1C1"
-		             BorderThickness="2"
-		             Height="25"
-		             Width="200"></TextBox>
                 </StackPanel>
             </StackPanel>
 
@@ -181,7 +99,7 @@
                     <Label Padding="5"
                            Height="30"
                            Foreground="#0F0F0F"
-                           Content="Lastname"></Label>
+                           Content="Basic Salary"></Label>
                     <TextBox BorderBrush="#FFC1C1C1"
                              BorderThickness="2"
                              Height="25"
@@ -193,7 +111,7 @@
                     <Label Padding="5"
                            Height="30"
                            Foreground="#0F0F0F"
-                           Content="Firstname"></Label>
+                           Content="Monthly Rate"></Label>
                     <TextBox BorderBrush="#FFC1C1C1"
                              BorderThickness="2"
                              Height="25"
@@ -205,7 +123,7 @@
                     <Label Padding="5"
                            Height="30"
                            Foreground="#0F0F0F"
-                           Content="Middle Name"></Label>
+                           Content="Daily Rate"></Label>
                     <TextBox BorderBrush="#FFC1C1C1"
                              BorderThickness="2"
                              Height="25"
