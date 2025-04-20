@@ -7,6 +7,211 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <StackPanel Background="#FFFFFF">
+            <StackPanel Grid.Row="0"
+	            Orientation="Horizontal"
+	            Margin="0 5 0 5">
+                <StackPanel Orientation="Vertical"
+                    Margin="25 0 25 0"
+                    Height="55">
+                    <Label Padding="5"
+	               Height="30"
+	               Foreground="#0F0F0F"
+	               Content="Hired Date"></Label>
+                    <DatePicker Width="200"
+                                BorderBrush="#FFC1C1C1"
+                                BorderThickness="1"
+                                Height="30"></DatePicker>
+                </StackPanel>
+                <StackPanel Orientation="Vertical"
+                    Margin="25 0 25 0"
+                    Height="55">
+                    <Label Padding="5"
+	                       Height="30"
+	                       Foreground="#0F0F0F"
+	                       Content="Department"></Label>
+                    <TextBox BorderBrush="#FFC1C1C1"
+		             BorderThickness="2"
+		             Height="25"
+                     Width="200"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical"
+                    Margin="25 0 25 0"
+                    Height="55">
+                    <Label Padding="5"
+	               Height="30"
+	               Foreground="#0F0F0F"
+	               Content="Profile Picture"></Label>
+                    <TextBox BorderBrush="#FFC1C1C1"
+		             BorderThickness="2"
+		             Height="25"
+                     Width="200"></TextBox>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Row="0"
+                Orientation="Horizontal"
+                Margin="0 5 0 5">
+                <StackPanel Orientation="Vertical"
+                    Margin="25 0 25 0"
+                    Height="55">
+                    <Label Padding="5"
+                   Height="30"
+                   Foreground="#0F0F0F"
+                   Content="Lastname"></Label>
+                    <TextBox BorderBrush="#FFC1C1C1"
+                     BorderThickness="2"
+                     Height="25"
+                     Width="200"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical"
+                    Margin="25 0 25 0"
+                    Height="55">
+                    <Label Padding="5"
+                   Height="30"
+                   Foreground="#0F0F0F"
+                   Content="Firstname"></Label>
+                    <TextBox BorderBrush="#FFC1C1C1"
+                     BorderThickness="2"
+                     Height="25"
+                     Width="200"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical"
+                    Margin="25 0 25 0"
+                    Height="55">
+                    <Label Padding="5"
+                   Height="30"
+                   Foreground="#0F0F0F"
+                   Content="Middle Name"></Label>
+                    <TextBox BorderBrush="#FFC1C1C1"
+                     BorderThickness="2"
+                     Height="25"
+                     Width="200"></TextBox>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Row="0"                                    
+                Orientation="Horizontal"
+                Margin="0 5 0 5">
+                <StackPanel Orientation="Vertical"
+                            Margin="25 0 25 0"
+                            Height="55">
+                    <Label Padding="5"
+                           Height="30"
+                           Foreground="#0F0F0F"
+                           Content="Employee ID"></Label>
+                    <TextBox BorderBrush="#FFC1C1C1"
+                             BorderThickness="2"
+                             Height="25"
+                             Width="200"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical"
+                            Margin="25 0 25 0"
+                            Height="55">
+                    <Label Padding="5"
+                           Height="30"
+                           Foreground="#0F0F0F"
+                           Content="Employee ID"></Label>
+                    <TextBox BorderBrush="#FFC1C1C1"
+                             BorderThickness="2"
+                             Height="25"
+                             Width="200"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical"
+                            Margin="25 0 25 0"
+                            Height="55">
+                    <Label Padding="5"
+                           Height="30"
+                           Foreground="#0F0F0F"
+                           Content="Civil Status"></Label>
+                    <TextBox BorderBrush="#FFC1C1C1"
+                             BorderThickness="2"
+                             Height="25"
+                             Width="200"></TextBox>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Row="0"                                    
+	            Orientation="Horizontal"
+	            Margin="0 5 0 5">
+                <StackPanel Orientation="Vertical"
+		            Margin="25 0 25 0"
+		            Height="55">
+                    <Label Padding="5"
+	               Height="30"
+	               Foreground="#0F0F0F"
+	               Content="Lastname"></Label>
+                    <TextBox BorderBrush="#FFC1C1C1"
+		             BorderThickness="2"
+		             Height="25"
+		             Width="200"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical"
+		            Margin="25 0 25 0"
+		            Height="55">
+                    <Label Padding="5"
+	               Height="30"
+	               Foreground="#0F0F0F"
+	               Content="Firstname"></Label>
+                    <TextBox BorderBrush="#FFC1C1C1"
+		             BorderThickness="2"
+		             Height="25"
+		             Width="200"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical"
+		            Margin="25 0 25 0"
+		            Height="55">
+                    <Label Padding="5"
+	               Height="30"
+	               Foreground="#0F0F0F"
+	               Content="Middle Name"></Label>
+                    <TextBox BorderBrush="#FFC1C1C1"
+		             BorderThickness="2"
+		             Height="25"
+		             Width="200"></TextBox>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Row="0"                                    
+                        Orientation="Horizontal"
+                        Margin="0 5 0 5">
+                <StackPanel Orientation="Vertical"
+                            Margin="25 0 25 0"
+                            Height="55">
+                    <Label Padding="5"
+                           Height="30"
+                           Foreground="#0F0F0F"
+                           Content="Lastname"></Label>
+                    <TextBox BorderBrush="#FFC1C1C1"
+                             BorderThickness="2"
+                             Height="25"
+                             Width="200"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical"
+                            Margin="25 0 25 0"
+                            Height="55">
+                    <Label Padding="5"
+                           Height="30"
+                           Foreground="#0F0F0F"
+                           Content="Firstname"></Label>
+                    <TextBox BorderBrush="#FFC1C1C1"
+                             BorderThickness="2"
+                             Height="25"
+                             Width="200"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical"
+                            Margin="25 0 25 0"
+                            Height="55">
+                    <Label Padding="5"
+                           Height="30"
+                           Foreground="#0F0F0F"
+                           Content="Middle Name"></Label>
+                    <TextBox BorderBrush="#FFC1C1C1"
+                             BorderThickness="2"
+                             Height="25"
+                             Width="200"></TextBox>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </UserControl>
